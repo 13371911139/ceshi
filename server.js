@@ -12,6 +12,7 @@ app.use('/dist', express.static('dist'));
 app.use('/lexiugo', express.static('dist/lexiugo'));
 app.use('/server/dist', express.static('dist'));
 app.use('/server/lexiugo', express.static('dist/server/lexiugo'));
+app.use('/server', express.static('dist'));
 
 console.log(process.env.NODE_ENV,'nodeserver=jj ');
 if(process.env.NODE_ENV ==='dev'){
@@ -35,5 +36,5 @@ app.get('/server',(req,res,next)=>{
 
 
 app.listen(8090,()=>{
-    console.log('local:localhost:８０99');
+    console.log('local:localhost:８０90');
 });
