@@ -1,0 +1,26 @@
+{
+  "name": "react-lovecarrepair",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "set NODE_ENV=prod&&node server.js",
+    "dev": "set NODE_ENV=dev&&node server.js",
+    "build": "webpack --config webpack/webpack.config.js"
+  },
+  "author": "mhw",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "swig": "^1.4.2",
+    "superagent": "^3.5.2"
+  },
+  "license": "ISC",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/zk201635/yun.git"
+  },
+  "description": ""
+}
