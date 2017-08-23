@@ -25,7 +25,7 @@ app.get('/server',(req,res,next)=>{
     console.log(req.query);
     var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
     var dataList={//'http://qq328532063.6655.la/dist/'+req.query.action ||
-        path:'http://www.toumingxiuche.cn/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
+        path:'http://116.62.162.134:8090/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
         title:arr[req.query.action]
     }
     res.render('index',{dataList:dataList});
