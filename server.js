@@ -23,13 +23,13 @@ if(process.env.NODE_ENV ==='dev'){
 
 app.use('/lexiugo-app', require('./api'));
 app.get('/server/:a',(req,res,next)=>{
-    res.cookie('resultStr',req.params.a)
-    res.write(
-        '<script>' +
-        'window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b3cc819d682ce0e&redirect_uri=http://www.beidouchaxun.cn/server?action=loveCarRepair&response_type=code&scope=snsapi_base&state=1&connect_redirect=1"' +
-        '</script>'
-    )
-    res.end();
+    console.log(req.query);
+    var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
+    var dataList={//'http://qq328532063.6655.la/dist/'+req.query.action ||
+        path:'http://116.62.162.134:8090/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
+        title:arr[req.query.action]
+    }
+    res.render('index',{dataList:dataList});
 })
 app.get('/server',(req,res,next)=>{
     console.log(req.query);
