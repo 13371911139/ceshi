@@ -23,12 +23,13 @@ if(process.env.NODE_ENV ==='dev'){
 
 app.use('/lexiugo-app', require('./api'));
 app.get('/server/:a',(req,res,next)=>{
-    res.cookie('resultStr',res.params.a)
+    res.cookie('resultStr',req.params.a)
     res.write(
         '<script>' +
         'window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b3cc819d682ce0e&redirect_uri=http://www.beidouchaxun.cn/server?action=loveCarRepair&response_type=code&scope=snsapi_base&state=1&connect_redirect=1"' +
         '</script>'
     )
+    res.end();
 })
 app.get('/server',(req,res,next)=>{
     console.log(req.query);
