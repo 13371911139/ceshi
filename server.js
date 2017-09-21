@@ -2,6 +2,7 @@ var express = require('express');
 var path =require('path');
 var swig = require('swig');
 var bodyParser = require('body-parser');
+var superagent = require('superagent');
 var app=express();
 var router = express.Router();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -23,12 +24,22 @@ if(process.env.NODE_ENV ==='dev'){
 
 app.use('/lexiugo-app', require('./api'));
 app.get('/server/:a',(req,res,next)=>{
-    var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
-    var dataList={//'http://qq328532063.6655.la/dist/'+req.query.action ||
-        path:'http://116.62.162.134:8090/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
-        title:arr[req.query.action]
+    if(req.params.a == 'isAdd'){
+        superagent
+            .get('https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN')
+            .end(function(res){
+                console.log(res);
+                res.json(res)
+            });
+    }else{
+        var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
+        var dataList={//'http://qq328532063.6655.la/dist/'+req.query.action ||
+            path:'http://116.62.162.134:8090/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
+            title:arr[req.query.action]
+        }
+        res.render('index',{dataList:dataList});
     }
-    res.render('index',{dataList:dataList});
+
 })
 app.get('/server',(req,res,next)=>{
     console.log(req.query);
