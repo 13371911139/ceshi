@@ -30,9 +30,9 @@ app.get('/server/:a',(req,res,next)=>{
 
         superagent
             .get('https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN')
-            .end(function(res){
-                console.log(res);
-                res.json({res:res,name:'我发了'})
+            .end(function(rese){
+                console.log(rese);
+                res.json({res:rese,name:'我发了'})
             });
     }else{
         var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
