@@ -25,9 +25,8 @@ if(process.env.NODE_ENV ==='dev'){
 app.use('/lexiugo-app', require('./api'));
 app.get('/server/:a',(req,res,next)=>{
     if(req.params.a == 'isAdd'){
-        console.log(req.params.a);
-        var data=req.body;console.log(data);
-
+        var data=req.query;
+        console.log(data);
         superagent
             .get('https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN')
             .end(function(rese){
