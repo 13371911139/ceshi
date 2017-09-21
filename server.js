@@ -26,9 +26,10 @@ app.use('/lexiugo-app', require('./api'));
 app.get('/server/:a',(req,res,next)=>{
     if(req.params.a == 'isAdd'){
         var data=req.query;
+        var url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
         console.log(data);
         superagent
-            .get('https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN')
+            .get(url)
             .end(function(rese){
                 console.log(rese);
                 res.json({res:rese,name:'我发了'})
