@@ -27,7 +27,7 @@ app.get('/server/:a',(req,res,next)=>{
     if(req.params.a == 'isAdd'){
         var data=req.query;
         var url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
-        console.log(data);
+        console.log(data,url);
         superagent
             .get(url)
             .end(function(rese){
