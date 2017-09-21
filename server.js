@@ -30,9 +30,12 @@ app.get('/server/:a',(req,res,next)=>{
         console.log(data,url);
         superagent
             .get(url)
-            .end(function(rese){
-                console.log(rese);
-                res.json({res:rese,name:'我发了'})
+            .accept('json')
+            .set('X-API-Key', 'foobar')
+            .set('Accept', 'application/json')
+            .end(function(reqe,rese){
+                console.log(rese.body);
+                res.json(rese.body)
             });
     }else{
         var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
