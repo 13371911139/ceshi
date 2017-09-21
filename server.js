@@ -25,12 +25,14 @@ if(process.env.NODE_ENV ==='dev'){
 app.use('/lexiugo-app', require('./api'));
 app.get('/server/:a',(req,res,next)=>{
     if(req.params.a == 'isAdd'){
-        console.log(req.params.a)
+        console.log(req.params.a);
+        var data=req.body;console.log(data);
+
         superagent
             .get('https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN')
             .end(function(res){
                 console.log(res);
-                res.json(res)
+                res.json({res:res,name:'我发了'})
             });
     }else{
         var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
