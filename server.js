@@ -15,50 +15,14 @@ app.use('/server/dist', express.static('dist'));
 app.use('/server/lexiugo', express.static('dist/server/lexiugo'));
 app.use('/server', express.static('dist'));
 
-console.log(process.env.NODE_ENV,'nodeserver=jj ');
 if(process.env.NODE_ENV ==='dev'){
-
+    global.ripath='/dist/';
 }else{
-    var ripath='/server/dist/';
+    global.ripath='/server/dist/';
 }
 
-app.use('/lexiugo-app', require('./api'));
-app.get('/server/:a',(req,res,next)=>{
-    if(req.params.a == 'isAdd'){
-        var data=req.query;
-        var url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
-        console.log(data,url);
-        superagent
-            .get(url)
-            .accept('json')
-            .set('X-API-Key', 'foobar')
-            .set('Accept', 'application/json')
-            .end(function(reqe,rese){
-                console.log(rese.body);
-                res.json(rese.body)
-            });
-    }else{
-        var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修'}
-        var dataList={//'http://qq328532063.6655.la/dist/'+req.query.action ||
-            path:'http://116.62.162.134:8090/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
-            title:arr[req.query.action]
-        }
-        res.render('index',{dataList:dataList});
-    }
-
-})
-app.get('/server',(req,res,next)=>{
-    console.log(req.query);
-    var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件推修',repairState:'运营管理'}
-    var dataList={//'http://qq328532063.6655.la/dist/'+req.query.action ||
-        path:'http://116.62.162.134:8090/server/dist/'+req.query.action || ripath+(req.query.action || 'lexiuApp'),
-        title:arr[req.query.action]
-    }
-    res.render('index',{dataList:dataList});
-})
-
-//app.use('/lexiugo-app',require('./api'))  ;
-
+app.use('/lexiugo-app', require('./api'));//toumingxiu/
+app.use('/server', require('./serverApi'));
 
 
 app.listen(8090,()=>{
