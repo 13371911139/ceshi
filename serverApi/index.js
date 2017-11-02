@@ -6,7 +6,7 @@ var router = express.Router();
 var projjj=true;
 
 //首页
-router.get('/showEWM:id',(req,res,next)=>{
+router.get('/showEWM/:id',(req,res,next)=>{
     if(req.params.id == 'isAdd'){
         var data=req.query;
         var url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
