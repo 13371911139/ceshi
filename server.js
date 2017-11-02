@@ -18,7 +18,7 @@ app.use('/server', express.static('dist'));
 if(process.env.NODE_ENV ==='dev'){
     global.ripath='/dist/';
 }else{
-    global.ripath='/server/dist/';
+    global.ripath='http://116.62.162.134:8090/server/dist/';
 }
 
 app.use('/lexiugo-app', require('./api'));//toumingxiu/

@@ -23,9 +23,8 @@ router.get('/showEWM:id',(req,res,next)=>{
     }else{
         res.cookie('jb','ii')
         var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件维修',repairState:'运营管理',integral:'积分榜'}
-        var ripath='http://116.62.162.134:8090/server/dist/'
         var dataList={
-            path:'http://116.62.162.134:8090/server/dist/'+(req.query.action || 'lexiuApp'),
+            path:ripath+(req.query.action || 'lexiuApp'),
             title:arr[req.query.action]
         }
         res.render('index',{dataList:dataList});
