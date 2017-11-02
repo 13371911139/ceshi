@@ -23,6 +23,7 @@ router.get('/showEWM:id',(req,res,next)=>{
     }else{
         res.cookie('jb','ii')
         var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件维修',repairState:'运营管理',integral:'积分榜'}
+        var ripath='http://www.toumingxiuche.cn/server/dist/'
         var dataList={
             path:ripath+(req.query.action || 'lexiuApp'),
             title:arr[req.query.action]
