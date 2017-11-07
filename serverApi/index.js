@@ -56,7 +56,7 @@ router.post('/selectCKImg',(req,res,next)=>{
                         for(var i in dats){
                             m.push({
                                 id:dats[i].ID,
-                                ImgPath:'/server/chakan/'+dats[i].ZZBH+'/'+dats[i].WORKNO+'/chakan/small/'+dats[i].DAMAGEPICTURE,
+                                ImgPath:'/damagePicture/'+dats[i].ZZBH+'/'+dats[i].WORKNO+'/chakan/small/'+dats[i].DAMAGEPICTURE,
                                 type:dats[i].DAMAGEAREAS
                             })
                         }
