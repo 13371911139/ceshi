@@ -1,9 +1,11 @@
 var express= require('express');
 var superagent = require('superagent');
-
+var sql=require('./config/ConnectDatabase');
 var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
 var projjj=true;
+
+
 
 //首页
 router.get('/showEWM/:id',(req,res,next)=>{
@@ -31,7 +33,6 @@ router.get('/showEWM/:id',(req,res,next)=>{
     }
 });
 router.get('/',(req,res,next)=>{
-    console.log(req.query);
     res.cookie('jb','ii')
     var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件维修',integral:'积分榜'}
     var dataList={
@@ -40,4 +41,35 @@ router.get('/',(req,res,next)=>{
     }
     res.render('index',{dataList:dataList});
 });
+router.post('/selectCKImg',(req,res,next)=>{
+    var query = (connection)=>{
+        sql.query({
+            connection:connection,
+            sql:"SELECT ID FROM lx_workmainsheet WHERE REPORTNO ='"+req.body.reportno+"' AND PLATENO = '"+req.body.plateno+"' AND DELFLAG='0' AND PUSHTASKNO='"+req.body.pushtaskno+"'",
+            fun:(dat)=>{
+                console.log(dat);
+                sql.query({
+                    connection:connection,
+                    sql:"SELECT * from lx_sheetpicture WHERE WORKID='"+dat+"'",
+                    success:(dats)=>{
+                        var m=[];
+                        for(var i in dats){
+                            m.push({
+                                id:dats[i].ID,
+                                ImgPath:'/server/chakan/'+dats[i].ZZBH+'/'+dats[i].WORKNO+'/chakan/small/'+dats[i].DAMAGEPICTURE,
+                                type:dats[i].DAMAGEAREAS
+                            })
+                        }
+                        res.jsonp(m)
+                    }
+                })
+            }
+        })
+    }
+    sql.Connect(query)
+})
+
+
+
+
 module.exports = router;
