@@ -4,7 +4,7 @@ var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
 router.post('/*',(req,res,next)=>{
     const data=req.body;
-    var projjj=false;
+    var projjj=true;
     if(projjj){
         var apiURL = 'http://www.toumingxiuche.cn'+req.originalUrl;
     }else{
