@@ -73,24 +73,10 @@ router.post('/selectCKImg',(req,res,next)=>{
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
-    $.ajax({
-        url:url,
-        data:{
-            'userName':"lexiugo",
-            'passwd':"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
-        },
-        contentType: "application/javascript",
-        dataType: "jsonp",
-        jsonp: "callback",
-        type: "post",
-        success: (msg)=>{
-            console.log(msg)
-        }
-    })
-    /*superagent
+    superagent
         .get(url)
         .query({
-            callback:'jQuery32109147565415667225_1510119995852',
+            callback:'_callback',
             _:'1510119995854',
             'userName':"lexiugo",
             'passwd':"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
@@ -99,7 +85,10 @@ router.post('/BQXX',(req,res,next)=>{
         .end((reqe,rese)=>{
             console.log(rese,'asdfasdf',reqe);
             res.json(rese)
-        });*/
+        });
+    var _callback=()=>{
+        console.log(value);
+    }
 })
 
 
