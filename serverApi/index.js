@@ -73,7 +73,7 @@ router.post('/selectCKImg',(req,res,next)=>{
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
-    $.load(url)
+
     superagent
         .get(url)
         .query({
@@ -85,7 +85,7 @@ router.post('/BQXX',(req,res,next)=>{
         .use(jsonp)
         .end((reqe,rese)=>{
             //console.log(rese,'asdfasdf',reqe);
-            var a = reqe.Request
+            var a = reqe.Request && reqe.Request()
             console.log(a)
             res.json(rese)
         });
