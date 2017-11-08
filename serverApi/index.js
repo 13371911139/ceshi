@@ -75,7 +75,7 @@ router.post('/selectCKImg',(req,res,next)=>{
 
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
-    var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data+"?callback=__callback&userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D&_=1510119995854"
+    var url="http://assess-api.lexiugo.com/assess-api/assess-api"+encodeURIComponent(req.body.data)+"?callback=__callback&userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D&_=1510119995854"
     http.get(url,(r)=>{
         var html = '';
         // 绑定data事件 回调函数 累加html片段
