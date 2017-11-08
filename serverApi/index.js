@@ -91,14 +91,14 @@ router.post('/BQXX',(req,res,next)=>{
                     if(i=='_callback'){
                         return abc=d[i];
                     }
-                    console.log(d);
+                    console.log(i);
                     if(typeof d[i]=='Object'){
                         func(d[i])
                     }
                 }
             }
             //func(rese.request);
-            console.log(rese.request._callback())
+            console.log(rese.request._callback)
             res.json(rese)
         });
 })
