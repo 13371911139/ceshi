@@ -1,5 +1,6 @@
 var express= require('express');
 var superagent = require('superagent');
+var jsonp = require('superagent-jsonp')
 var sql=require('./config/ConnectDatabase');
 var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
@@ -73,7 +74,7 @@ router.post('/BQXX',(req,res,next)=>{
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
     superagent
         .post(url)
-        .type(jsonpCallback)
+        .use(jsonp)
         .query({
             userName:"lexiugo",
             passwd:"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
