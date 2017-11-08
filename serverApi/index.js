@@ -74,10 +74,6 @@ router.post('/BQXX',(req,res,next)=>{
     superagent
         .post(url)
         .type('form')
-        /*.query({
-            userName:"lexiugo",
-            passwd:"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
-        })*/
         .send({
             userName:"lexiugo",
             passwd:"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
