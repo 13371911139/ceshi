@@ -72,7 +72,7 @@ router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
     superagent
-        .get(url)
+        .post(url)
         .type('form')
         .query({userName:"lexiugo",
             passwd:"n27H3lNGL7wJSePFsrr0g16UTU0+tDfsGHMVZ2pmxsDaFV4cVSzVwQ%3d%3d",})
