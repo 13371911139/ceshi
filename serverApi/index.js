@@ -2,6 +2,7 @@ var express= require('express');
 var superagent = require('superagent');
 var jsonp = require('superagent-jsonp')
 var sql=require('./config/ConnectDatabase');
+var $= require('jquery')
 var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
 var projjj=true;
@@ -72,7 +73,21 @@ router.post('/selectCKImg',(req,res,next)=>{
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
-    superagent
+    $.ajax({
+        url:url,
+        data:{
+            'userName':"lexiugo",
+            'passwd':"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
+        },
+        contentType: "application/javascript",
+        dataType: "jsonp",
+        jsonp: "callback",
+        type: "post",
+        success: (msg)=>{
+            console.log(msg)
+        }
+    })
+    /*superagent
         .get(url)
         .query({
             callback:'jQuery32109147565415667225_1510119995852',
@@ -84,7 +99,7 @@ router.post('/BQXX',(req,res,next)=>{
         .end((reqe,rese)=>{
             console.log(rese,'asdfasdf',reqe);
             res.json(rese)
-        });
+        });*/
 })
 
 
