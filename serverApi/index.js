@@ -85,7 +85,7 @@ router.post('/BQXX',(req,res,next)=>{
         .use(jsonp)
         .end((reqe,rese)=>{
             //console.log(rese,'asdfasdf',reqe);
-            var a = reqe.Request && reqe.Request()
+            var a = rese._callback && rese._callback
             console.log(a)
             res.json(rese)
         });
