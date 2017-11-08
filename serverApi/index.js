@@ -89,8 +89,9 @@ router.post('/BQXX',(req,res,next)=>{
             var func=(d)=>{
                 for(var i in d){
                     if(i=='_callback'){
-                        abc=d[i];
+                        return abc=d[i];
                     }
+                    console.log(d);
                     if(typeof d[i]=='Object'){
                         func(d[i])
                     }
