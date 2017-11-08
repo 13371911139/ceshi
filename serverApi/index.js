@@ -74,7 +74,7 @@ router.post('/BQXX',(req,res,next)=>{
     superagent
         .get(url)
         .query({userName:"lexiugo",
-            passwd:"n27H3lNGL7wJSePFsrr0g16UTU0+tDfsGHMVZ2pmxsDaFV4cVSzVwQ==",})
+            passwd:"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D",})
         .end((reqe,rese)=>{
             console.log(rese,'asdfasdf',reqe);
             res.json(rese.body)
