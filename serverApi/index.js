@@ -84,7 +84,7 @@ router.post('/BQXX',(req,res,next)=>{
         })
         .use(jsonp)
         .end((reqe,rese)=>{
-            
+            console.log(rese)
             res.json(rese)
         });
 })
