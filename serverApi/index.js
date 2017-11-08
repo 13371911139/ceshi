@@ -97,7 +97,7 @@ router.post('/BQXX',(req,res,next)=>{
                     }
                 }
             }
-            func(rese);
+            func(rese.Response);
             console.log(abc)
             res.json(rese)
         });
