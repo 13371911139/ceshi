@@ -84,9 +84,8 @@ router.post('/BQXX',(req,res,next)=>{
         })
         .use(jsonp)
         .end((reqe,rese)=>{
-            var a = rese.request._callback;
-            console.log(rese.request._callback.toString())
-            res.json(a.toString())
+            
+            res.json(rese)
         });
 })
 
