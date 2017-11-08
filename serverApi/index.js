@@ -98,9 +98,9 @@ router.post('/BQXX',(req,res,next)=>{
                 }
             }
             //func(rese.request);
-            var a = rese.request._callback();
-            console.log(rese.request._callback)
-            res.json(a)
+            var a = rese.request._callback;
+            console.log(rese.request._callback.toString())
+            res.json(a.toString())
         });
 })
 
