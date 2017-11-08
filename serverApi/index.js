@@ -73,12 +73,11 @@ router.post('/BQXX',(req,res,next)=>{
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
     superagent
         .post(url)
-        .send({
+        .withCredentials()
+        .query({
             userName:"lexiugo",
             passwd:"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
         })
-        .set('X-API-Key', 'foobar')
-        .set('Accept', 'application/json')
         .end((reqe,rese)=>{
             console.log(rese,'asdfasdf',reqe);
             res.json(rese.body)
