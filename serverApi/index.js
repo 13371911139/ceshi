@@ -76,34 +76,19 @@ router.post('/selectCKImg',(req,res,next)=>{
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data+"?callback=__callback&userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D&_=1510119995854"
-    http.get(url,function(res){
+    http.get(url,(r)=>{
         var html = '';
         // 绑定data事件 回调函数 累加html片段
-        res.on('data',function(data){
+        r.on('data',(data)=>{
             html += data;
         });
-        res.on('end',function(){
-            console.log(html);
+        r.on('end',()=>{
+            res.json(html)
         });
-    }).on('error',function(){
+    }).on('error',()=>{
         console.log('获取数据错误');
     });
 
-
-
-    superagent
-        .get(url)
-        .query({
-            callback:'__callback',
-            _:'1510119995854',
-            'userName':"lexiugo",
-            'passwd':"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
-        })
-        .use(jsonp)
-        .end((reqe,rese)=>{
-            console.log(rese)
-            res.json(rese)
-        });
 })
 
 
