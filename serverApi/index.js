@@ -73,6 +73,8 @@ router.post('/BQXX',(req,res,next)=>{
     var url="http://assess-api.lexiugo.com/assess-api/assess-api/"+req.body.data+"?userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0+tDfsGHMVZ2pmxsDaFV4cVSzVwQ=="
     superagent
         .get(url)
+        .query({userName:"lexiugo",
+            passwd:"n27H3lNGL7wJSePFsrr0g16UTU0+tDfsGHMVZ2pmxsDaFV4cVSzVwQ==",})
         .end((reqe,rese)=>{
             console.log(rese,'asdfasdf',reqe);
             res.json(rese.body)
