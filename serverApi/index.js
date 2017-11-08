@@ -77,27 +77,13 @@ router.post('/BQXX',(req,res,next)=>{
     superagent
         .get(url)
         .query({
-            callback:'_callback',
+            callback:'__callback',
             _:'1510119995854',
             'userName':"lexiugo",
             'passwd':"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D"
         })
         .use(jsonp)
         .end((reqe,rese)=>{
-            //console.log(rese,'asdfasdf',reqe);
-            var abc;
-            var func=(d)=>{
-                for(var i in d){
-                    if(i=='_callback'){
-                        return abc=d[i];
-                    }
-                    console.log(i);
-                    if(typeof d[i]=='Object'){
-                        func(d[i])
-                    }
-                }
-            }
-            //func(rese.request);
             var a = rese.request._callback;
             console.log(rese.request._callback.toString())
             res.json(a.toString())
