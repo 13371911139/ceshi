@@ -83,12 +83,14 @@ router.post('/BQXX',(req,res,next)=>{
             html += data;
         });
         r.on('end',()=>{
-            res.json(html)
+            eval(html)
         });
     }).on('error',()=>{
         console.log('获取数据错误');
     });
-
+    var __callback= (d)=>{
+        res.json(d)
+    }
 })
 
 
