@@ -75,7 +75,7 @@ router.post('/BQXX',(req,res,next)=>{
         .get(url)
         .type('form')
         .query({userName:"lexiugo",
-            passwd:"n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D",})
+            passwd:"n27H3lNGL7wJSePFsrr0g16UTU0+tDfsGHMVZ2pmxsDaFV4cVSzVwQ%3d%3d",})
         .set('Accept','application/json')
         .end((reqe,rese)=>{
             console.log(rese,'asdfasdf',reqe);
