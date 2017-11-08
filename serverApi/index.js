@@ -83,6 +83,7 @@ router.post('/BQXX',(req,res,next)=>{
             html += data;
         });
         r.on('end',()=>{
+            console.log(eval(''+html.split('__callback')[1]+''))
             res.json(eval(''+html.split('__callback')[1]+''))
         });
     }).on('error',()=>{
