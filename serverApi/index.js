@@ -68,6 +68,16 @@ router.post('/selectCKImg',(req,res,next)=>{
     }
     sql.Connect(query)
 })
+router.post('/BQXX',(req,res,next)=>{
+    console.log(req.body.data);
+    var url="http://assess-api.lexiugo.com/assess-api/assess-api/"+req.body.data+"?userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0+tDfsGHMVZ2pmxsDaFV4cVSzVwQ=="
+    superagent
+        .get(url)
+        .end((reqe,rese)=>{
+            console.log(rese,'asdfasdf',reqe);
+            res.json(rese.body)
+        });
+})
 
 
 
