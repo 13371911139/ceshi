@@ -2,6 +2,7 @@ var express= require('express');
 var superagent = require('superagent');
 var jsonp = require('superagent-jsonp')
 var sql=require('./config/ConnectDatabase');
+var http=require('http')
 var $= require('jquery')
 var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
@@ -70,9 +71,25 @@ router.post('/selectCKImg',(req,res,next)=>{
     }
     sql.Connect(query)
 })
+
+
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
-    var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data
+    var url="http://assess-api.lexiugo.com/assess-api/assess-api"+req.body.data+"?callback=__callback&userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D&_=1510119995854"
+    http.get(url,function(res){
+        var html = '';
+        // 绑定data事件 回调函数 累加html片段
+        res.on('data',function(data){
+            html += data;
+        });
+        res.on('end',function(){
+            console.log(html);
+        });
+    }).on('error',function(){
+        console.log('获取数据错误');
+    });
+
+
 
     superagent
         .get(url)
