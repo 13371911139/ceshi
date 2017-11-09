@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 var superagent = require('superagent');
 var app=express();
 var router = express.Router();
-//app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.bodyParser())
+app.use(bodyParser.urlencoded({extended:true}));
+//app.use(express.bodyParser())
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/');
