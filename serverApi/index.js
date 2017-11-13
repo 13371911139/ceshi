@@ -95,7 +95,7 @@ router.get('/getMapList',(req,res,next)=>{
     var query = (connection)=> {
         sql.query({
             connection: connection,
-            sql: "SELECT * from ceshi_hotpoint limit",
+            sql: "SELECT * from ceshi_hotpoint",
             success: (dats) => {
                 console.log(dats);
                 res.jsonp({data:dats})
