@@ -91,6 +91,19 @@ router.post('/BQXX',(req,res,next)=>{
     });
 })
 
+router.get('/getMapList',(req,res,next)=>{
+    var query = (connection)=> {
+        sql.query({
+            connection: connection,
+            sql: "SELECT * from ceshi_hotpoint limit",
+            success: (dats) => {
+                console.log(dats);
+                res.jsonp({data:dats})
+            }
+        })
+    }
+    sql.Connect(query)
+})
 
 
 
