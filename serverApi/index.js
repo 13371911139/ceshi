@@ -115,7 +115,7 @@ router.post('/getCoupon',(req,res,next)=>{
             " FROM tmx_coupon_ticket_xlc_user a,xlc_pushtask b WHERE a.task_id = b.id and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
                 console.log(dats);
-                res.jsonp({data:dats})
+                res.jsonp({data:dats[0]})
             }
         })
     }
