@@ -105,6 +105,18 @@ router.get('/getMapList',(req,res,next)=>{
     sql.Connect(query)
 })
 
-
+router.get('/getCoupon',(req,res,next)=>{
+    var query = (connection)=> {
+        sql.query({
+            connection: connection,
+            sql: "SELECT * from ceshi_hotpoint",
+            success: (dats) => {
+                console.log(dats);
+                res.jsonp({data:dats})
+            }
+        })
+    }
+    sql.Connect(query)
+})
 
 module.exports = router;
