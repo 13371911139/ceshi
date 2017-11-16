@@ -109,7 +109,10 @@ router.get('/getCoupon',(req,res,next)=>{
     var query = (connection)=> {
         sql.query({
             connection: connection,
-            sql: "SELECT * from ceshi_hotpoint",
+            sql: "SELECT "+
+            "a.id,a.task_id,a.user_id,a.ticket_name,a.ticket_limit,a.ticket_money,a.ticket_end_time,a.use_status,a.use_time"+
+            "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE"+
+            " FROM tmx_coupon_ticket_xlc_user a,xlc_pushtask b WHERE a.task_id = b.id and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
                 console.log(dats);
                 res.jsonp({data:dats})
