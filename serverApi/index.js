@@ -105,7 +105,7 @@ router.get('/getMapList',(req,res,next)=>{
     sql.Connect(query)
 })
 
-router.get('/getCoupon',(req,res,next)=>{
+router.post('/getCoupon',(req,res,next)=>{
     var query = (connection)=> {
         sql.query({
             connection: connection,
