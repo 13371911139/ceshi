@@ -110,7 +110,7 @@ router.get('/getCoupon',(req,res,next)=>{
         sql.query({
             connection: connection,
             sql: "SELECT "+
-            "a.id,a.task_id,a.user_id,a.ticket_name,a.ticket_limit,a.ticket_money,a.ticket_end_time,a.use_status,a.use_time"+
+            "a.id,a.task_id,a.user_id,a.ticket_name,a.ticket_limit,a.ticket_money,a.ticket_end_time,a.use_status,a.use_time,"+
             "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE"+
             " FROM tmx_coupon_ticket_xlc_user a,xlc_pushtask b WHERE a.task_id = b.id and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
