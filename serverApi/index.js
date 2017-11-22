@@ -44,35 +44,6 @@ router.get('/',(req,res,next)=>{
     }
     res.render('index',{dataList:dataList});
 });
-router.post('/selectCKImg',(req,res,next)=>{
-    var query = (connection)=>{
-        sql.query({
-            connection:connection,
-            sql:"SELECT ID FROM lx_workmainsheet WHERE REPORTNO ='"+req.body.reportno+"' AND PLATENO = '"+req.body.plateno+"' AND DELFLAG='0' AND PUSHTASKNO='"+req.body.pushtaskno+"'",
-            fun:(dat)=>{
-                console.log(dat);
-                sql.query({
-                    connection:connection,
-                    sql:"SELECT * from lx_sheetpicture WHERE WORKID='"+dat+"'",
-                    success:(dats)=>{
-                        var m=[];
-                        for(var i in dats){
-                            m.push({
-                                id:dats[i].ID,
-                                ImgPath:'/damagePicture/'+dats[i].ZZBH+'/'+dats[i].WORKNO+'/chakan/small/'+dats[i].DAMAGEPICTURE,
-                                type:dats[i].DAMAGEAREAS
-                            })
-                        }
-                        res.jsonp(m)
-                    }
-                })
-            }
-        })
-    }
-    sql.Connect(query)
-})
-
-
 router.post('/BQXX',(req,res,next)=>{
     console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+encodeURIComponent(req.body.data)+"?callback=__callback&userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D&_=1510119995854"
@@ -110,12 +81,62 @@ router.post('/getCoupon',(req,res,next)=>{
         sql.query({
             connection: connection,
             sql: "SELECT "+
-            "a.id,a.task_id,a.user_id,a.ticket_name,a.ticket_limit,a.ticket_money,a.ticket_end_time,a.use_status,a.use_time,"+
+            "a.id,a.task_id,a.user_id,a.coupon_name,a.lower_limit,a.upper_limit,a.coupon_money,a.end_time,a.use_status,a.use_time,"+
             "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE"+
-            " FROM tmx_coupon_ticket_xlc_user a,xlc_pushtask b WHERE a.task_id = b.id and ticket_id='"+req.body.ticketId+"'",
+            " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.task_id and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
                 console.log(dats);
                 res.jsonp({data:dats[0]})
+            }
+        })
+    }
+    sql.Connect(query)
+})
+
+
+
+
+/***/
+router.post('/selectCKImg',(req,res,next)=>{
+    var query = (connection)=>{
+        sql.query({
+            connection:connection,
+            sql:"SELECT ID FROM lx_workmainsheet WHERE REPORTNO ='"+req.body.reportno+"' AND PLATENO = '"+req.body.plateno+"' AND DELFLAG='0' AND PUSHTASKNO='"+req.body.pushtaskno+"'",
+            fun:(dat)=>{
+                console.log(dat);
+                sql.query({
+                    connection:connection,
+                    sql:"SELECT * from lx_sheetpicture WHERE WORKID='"+dat+"'",
+                    success:(dats)=>{
+                        var m=[];
+                        for(var i in dats){
+                            m.push({
+                                id:dats[i].ID,
+                                ImgPath:'/damagePicture/'+dats[i].ZZBH+'/'+dats[i].WORKNO+'/chakan/small/'+dats[i].DAMAGEPICTURE,
+                                type:dats[i].DAMAGEAREAS
+                            })
+                        }
+                        res.jsonp(m)
+                    }
+                })
+            }
+        })
+    }
+    sql.Connect(query)
+})
+router.post('/selectWXImg',(req,res,next)=>{
+    var query = (connection)=> {
+        sql.query({
+            connection: connection,
+            sql: "SELECT ID,pictype,PICTURENAME FROM lx_xlc_task_picture WHERE PUSHTASKID='"+req.body.pushTaskId+"'",
+            success: (dat) => {
+                var data=[]
+                for(var i=0;i<dat.length;i++){
+                    data.push({
+                        ImgPath:'/LX2017090700305/X20171121000179882/weixiu/small/1511340509591_repair_1.png'
+                    })
+                }
+                res.jsonp({data:dat,code:'0000'})
             }
         })
     }
