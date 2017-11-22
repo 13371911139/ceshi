@@ -128,15 +128,24 @@ router.post('/selectWXImg',(req,res,next)=>{
     var query = (connection)=> {
         sql.query({
             connection: connection,
-            sql: "SELECT ID,pictype,PICTURENAME FROM lx_xlc_task_picture WHERE PUSHTASKID='"+req.body.pushTaskId+"'",
+            sql: "SELECT TP.ID,TP.pictype,"+
+                "PK.REPORTNO,PK.PLATENO,PK.PUSH_TASK_NO"
+            +"TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' PK.id=TP.PUSHTASKID",
             success: (dat) => {
-                var data=[]
-                for(var i=0;i<dat.length;i++){
-                    data.push({
-                        ImgPath:'/LX2017090700305/X20171121000179882/weixiu/small/1511340509591_repair_1.png'
-                    })
-                }
-                res.jsonp({data:dat,code:'0000'})
+                sql.query({
+                    connection: connection,
+                    sql: "SELECT ID,pictype,PICTURENAME FROM lx_xlc_task_picture WHERE PUSHTASKID='" + req.body.pushTaskId + "'",
+                    success: (dat2) => {
+                        sql.query({connection: connection})
+                        var data=[]
+                        for(var i=0;i<dat.length;i++){
+                            data.push({
+                                ImgPath:'/LX2017090700305/X20171121000179882/weixiu/small/1511340509591_repair_1.png'
+                            })
+                        }
+                        res.jsonp({data:dat,code:'0000'})
+                    }
+                })
             }
         })
     }
