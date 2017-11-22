@@ -81,12 +81,12 @@ router.post('/getCoupon',(req,res,next)=>{
         sql.query({
             connection: connection,
             sql: "SELECT "+
-            "a.id,a.task_id,a.user_id,a.coupon_name,a.lower_limit,a.upper_limit,a.coupon_money,a.end_time,a.use_status,a.use_time,"+
-            "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE"+
+            "a.id,a.task_id,a.user_id,a.coupon_name,a.lower_limit,a.upper_limit,a.coupon_money,a.end_time,a.use_status,a.use_time,create_time,"+
+            "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE,b.repair_Moneny"+
             " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.ID and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
                 console.log(dats);
-                res.jsonp({data:dats[0]})
+                res.jsonp({data:dats[0],code:'0000'})
             }
         })
     }
