@@ -130,7 +130,7 @@ router.post('/selectWXImg',(req,res,next)=>{
             connection: connection,
             sql: "SELECT TP.ID,TP.pictype,"+
                 "PK.REPORTNO,PK.PLATENO,PK.PUSH_TASK_NO"
-            +"TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' PK.id=TP.PUSHTASKID",
+            +"TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' AND PK.id=TP.PUSHTASKID",
             success: (dat) => {
                 sql.query({
                     connection: connection,
