@@ -141,8 +141,8 @@ router.post('/selectWXImg',(req,res,next)=>{
                         var data=[]
                         for(var i=0;i<dat.length;i++){
                             data.push({
-                                ImgPath:'/'+dat[i].PUSH_TASK_NO+'/'+dat2[0].WORKNO+'/weixiu/small/'+dat[i].PICTURENAME+'',
-                                bigImgPath:'/'+dat[i].PUSH_TASK_NO+'/'+dat2[0].WORKNO+'/weixiu/'+dat[i].PICTURENAME+'',
+                                ImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+'/'+dat[i].PUSH_TASK_NO+'/weixiu/small/'+dat[i].PICTURENAME+'',
+                                bigImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+''+dat[i].PUSH_TASK_NO+'/weixiu/'+dat[i].PICTURENAME+'',
                                 type:dat[i].pictype
                             })
                         }
