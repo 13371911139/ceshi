@@ -129,21 +129,24 @@ router.post('/selectWXImg',(req,res,next)=>{
         sql.query({
             connection: connection,
             sql: "SELECT TP.ID,TP.pictype,"+
-                "PK.REPORTNO,PK.PLATENO,PK.PUSH_TASK_NO,"
-            +"TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' AND PK.id=TP.PUSHTASKID",
+                "PK.REPORTNO,PK.PLATENO,PK.PUSH_TASK_NO,PK.PUSH_TARGET_ID,"
+            +"TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK"+
+            "WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' AND PK.id=TP.PUSHTASKID",
             success: (dat) => {
                 sql.query({
                     connection: connection,
-                    sql: "SELECT ID,pictype,PICTURENAME FROM lx_xlc_task_picture WHERE PUSHTASKID='" + req.body.pushTaskId + "'",
+                    sql: "SELECT WORKNO FROM lx_workmainsheet WHERE REPORTNO ='"+dat[0].REPORTNO+"' AND PLATENO = '"+dat[0].PLATENO+"' AND DELFLAG='0' AND PUSHTASKNO='"+dat[0].PUSH_TASK_NO+"'",
                     success: (dat2) => {
                         sql.query({connection: connection})
                         var data=[]
                         for(var i=0;i<dat.length;i++){
                             data.push({
-                                ImgPath:'/LX2017090700305/X20171121000179882/weixiu/small/1511340509591_repair_1.png'
+                                ImgPath:'/'+dat[i].PUSH_TASK_NO+'/'+dat2[0].WORKNO+'/weixiu/small/'+dat[i].PICTURENAME+'',
+                                bigImgPath:'/'+dat[i].PUSH_TASK_NO+'/'+dat2[0].WORKNO+'/weixiu/'+dat[i].PICTURENAME+'',
+                                type:dat[i].pictype
                             })
                         }
-                        res.jsonp({data:dat,code:'0000'})
+                        res.jsonp({data:data,code:'0000'})
                     }
                 })
             }
