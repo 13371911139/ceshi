@@ -133,15 +133,12 @@ router.post('/selectWXImg',(req,res,next)=>{
     var query = (connection)=> {
         sql.query({
             connection: connection,
-            sql: "SELECT TP.ID,TP.pictype,"+
-                "PK.REPORTNO,PK.PLATENO,PK.PUSH_TASK_NO,PK.PUSH_TARGET_ID,"+
-                "TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK "+
-                "WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' AND PK.id=TP.PUSHTASKID",
+            sql: "SELECT TP.ID,TP.pictype,PK.REPORTNO,PK.PLATENO,PK.PUSH_TASK_NO,PK.PUSH_TARGET_ID,WK.WORKNO,TP.PICTURENAME,TP.PICFROM FROM lx_xlc_task_picture TP,xlc_pushtask PK ,lx_workmainsheet WK WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"'  AND PK.id=TP.PUSHTASKID AND PK.REPORTNO=WK.REPORTNO AND PK.PLATENO = WK.PLATENO AND PK.PUSH_TASK_NO=WK.PUSHTASKNO",
             success: (dat) => {
                 var data=[]
                 for(var i=0;i<dat.length;i++){
                     data.push({
-                        ImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+'/'+dat[i].PUSH_TASK_NO+'/weixiu/small/'+dat[i].PICTURENAME+'',
+                        ImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+'/'+dat[i].PICFROM*1=='4'?dat[i].WORKNO:dat[i].PUSH_TASK_NO+'/weixiu/small/'+dat[i].PICTURENAME+'',
                         bigImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+''+dat[i].PUSH_TASK_NO+'/weixiu/'+dat[i].PICTURENAME+'',
                         type:dat[i].pictype
                     })
