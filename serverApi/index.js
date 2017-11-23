@@ -3,7 +3,6 @@ var superagent = require('superagent');
 var jsonp = require('superagent-jsonp')
 var sql=require('./config/ConnectDatabase');
 var http=require('http')
-var $= require('jquery')
 var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
 var projjj=true;
@@ -77,7 +76,12 @@ router.get('/getMapList',(req,res,next)=>{
 })
 
 router.post('/getCoupon',(req,res,next)=>{
+    var code,msg;
+    if(!req.body.ticketId){
+        code='0002',msg='请使用正确的优惠券';
+    }
     var query = (connection)=> {
+        res.jsonp({code:code,msg:msg})
         sql.query({
             connection: connection,
             sql: "SELECT "+
@@ -85,8 +89,8 @@ router.post('/getCoupon',(req,res,next)=>{
             "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE,b.repair_Moneny"+
             " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.ID and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
-                console.log(dats);
-                res.jsonp({data:dats[0],code:'0000'})
+                if(!dats[0]){code='0009';msg='无此优惠券'}else{code='0000';msg='查询成功'}
+                res.jsonp({data:dats[0],code:code,msg:msg})
             }
         })
     }
@@ -133,22 +137,23 @@ router.post('/selectWXImg',(req,res,next)=>{
                 "TP.PICTURENAME FROM lx_xlc_task_picture TP,xlc_pushtask PK "+
                 "WHERE TP.PUSHTASKID='"+req.body.pushTaskId+"' AND PK.id=TP.PUSHTASKID",
             success: (dat) => {
-                sql.query({
+                var data=[]
+                for(var i=0;i<dat.length;i++){
+                    data.push({
+                        ImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+'/'+dat[i].PUSH_TASK_NO+'/weixiu/small/'+dat[i].PICTURENAME+'',
+                        bigImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+''+dat[i].PUSH_TASK_NO+'/weixiu/'+dat[i].PICTURENAME+'',
+                        type:dat[i].pictype
+                    })
+                }
+                res.jsonp({data:data,code:'0000'})
+                /*sql.query({
                     connection: connection,
                     sql: "SELECT WORKNO FROM lx_workmainsheet WHERE REPORTNO ='"+dat[0].REPORTNO+"' AND PLATENO = '"+dat[0].PLATENO+"' AND DELFLAG='0' AND PUSHTASKNO='"+dat[0].PUSH_TASK_NO+"'",
                     success: (dat2) => {
                         sql.query({connection: connection})
-                        var data=[]
-                        for(var i=0;i<dat.length;i++){
-                            data.push({
-                                ImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+'/'+dat[i].PUSH_TASK_NO+'/weixiu/small/'+dat[i].PICTURENAME+'',
-                                bigImgPath:'/damagePicture/'+dat[i].PUSH_TARGET_ID+''+dat[i].PUSH_TASK_NO+'/weixiu/'+dat[i].PICTURENAME+'',
-                                type:dat[i].pictype
-                            })
-                        }
-                        res.jsonp({data:data,code:'0000'})
+
                     }
-                })
+                })*/
             }
         })
     }
