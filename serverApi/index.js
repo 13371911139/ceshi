@@ -79,9 +79,10 @@ router.post('/getCoupon',(req,res,next)=>{
     var code,msg;
     if(!req.body.ticketId){
         code='0002',msg='请使用正确的优惠券';
+        res.jsonp({code:code,mess:msg})
+        return;
     }
     var query = (connection)=> {
-        res.jsonp({code:code,msg:msg})
         sql.query({
             connection: connection,
             sql: "SELECT "+
@@ -90,7 +91,7 @@ router.post('/getCoupon',(req,res,next)=>{
             " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.ID and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
                 if(!dats[0]){code='0009';msg='无此优惠券'}else{code='0000';msg='查询成功'}
-                res.jsonp({data:dats[0],code:code,msg:msg})
+                res.jsonp({data:dats[0],code:code,mess:msg})
             }
         })
     }
