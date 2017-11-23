@@ -86,7 +86,7 @@ router.post('/getCoupon',(req,res,next)=>{
         sql.query({
             connection: connection,
             sql: "SELECT "+
-            "a.id,a.task_id,a.user_id,a.coupon_name,a.lower_limit,a.upper_limit,a.coupon_money,a.end_time,a.use_status,a.use_time,create_time,"+
+            "a.id,a.task_id,a.user_id,a.coupon_name,a.lower_limit,a.upper_limit,a.coupon_money,DATE_FORMAT(a.end_time,'%Y-%m-%u') AS end_time,a.use_status,DATE_FORMAT(a.use_time,'%Y-%m-%u') AS use_time,DATE_FORMAT(a.create_time,'%Y-%m-%u') AS create_time,"+
             "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE,b.repair_Moneny"+
             " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.ID and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
