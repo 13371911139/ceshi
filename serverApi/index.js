@@ -36,6 +36,12 @@ router.get('/showEWM/:id',(req,res,next)=>{
 });
 router.get('/',(req,res,next)=>{
     res.cookie('jb','ii')
+    var newArr={fomeXLC:{type:lexiuApp}};
+    for(var i in newArr){
+        if(i=req.query.action){
+            req.query.action=newArr[i].type
+        }
+    }
     var arr={loveCarRepair:'维修记录',lexiuApp:'修理厂',reportStatistics:'透明修车',newBuild:'案件维修',integral:'积分榜'}
     var dataList={
         path:ripath+(req.query.action || 'lexiuApp'),
