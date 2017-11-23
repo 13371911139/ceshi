@@ -38,7 +38,7 @@ router.get('/',(req,res,next)=>{
     res.cookie('jb','ii')
     var newArr={fomeXLC:{type:lexiuApp}};
     for(var i in newArr){
-        if(i=req.query.action){
+        if(i==req.query.action){
             req.query.action=newArr[i].type
         }
     }
