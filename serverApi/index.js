@@ -165,4 +165,27 @@ router.post('/selectWXImg',(req,res,next)=>{
     sql.Connect(query)
 })
 
+/*ws*/
+var WebSocketServer = require('ws').Server,
+    wss = new WebSocketServer({ port: 8181 });
+var sockets = {};
+wss.on('connection', function (ws) {
+    console.log('client connected',i,sockets.length);
+    ws.on('message', function (message) {
+        var newMes=JSON.parse(message);
+        switch(newMes.type){
+            case 'userd':
+                sockets[newMes.id].send('isUserd');
+                delete sockets[newMes.id];
+                break;
+            case 'toUse':
+                sockets[newMes.id]=ws;
+                break;
+            default:
+        }
+    });
+});
+
+
+
 module.exports = router;
