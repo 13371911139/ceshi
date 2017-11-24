@@ -17,13 +17,14 @@ wss.on('connection', function (ws) {
     console.log('client connected',sockets.length);
     ws.on('message', function (message) {
         var newMes=JSON.parse(message);
+        console.log(newMes);
         switch(newMes.type){
             case 'userd':
                 sockets[newMes.id].send('isUserd');
                 delete sockets[newMes.id];
                 break;
             case 'toUse':
-                console.log(newMes.id);
+                console.log(newMes);
                 sockets[newMes.id]=ws;
                 break;
             default:
