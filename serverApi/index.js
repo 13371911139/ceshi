@@ -14,7 +14,7 @@ var WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({ port: 8181 });
 var sockets = {};
 wss.on('connection', function (ws) {
-    console.log('client connected',i,sockets.length);
+    console.log('client connected',sockets.length);
     ws.on('message', function (message) {
         var newMes=JSON.parse(message);
         switch(newMes.type){
