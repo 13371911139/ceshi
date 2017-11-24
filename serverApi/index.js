@@ -9,6 +9,31 @@ var projjj=true;
 
 
 
+/*ws*/
+var WebSocketServer = require('ws').Server,
+    wss = new WebSocketServer({ port: 8181 });
+var sockets = {};
+wss.on('connection', function (ws) {
+    console.log('client connected',i,sockets.length);
+    ws.on('message', function (message) {
+        var newMes=JSON.parse(message);
+        switch(newMes.type){
+            case 'userd':
+                sockets[newMes.id].send('isUserd');
+                delete sockets[newMes.id];
+                break;
+            case 'toUse':
+                console.log(newMes.id);
+                sockets[newMes.id]=ws;
+                break;
+            default:
+        }
+    });
+});
+
+
+
+
 //首页
 router.get('/showEWM/:id',(req,res,next)=>{
     if(req.params.id == 'isAdd'){
@@ -96,6 +121,7 @@ router.post('/getCoupon',(req,res,next)=>{
             "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE,b.repair_Moneny"+
             " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.ID and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
+                sockets[req.body.ticketId] && sockets[req.body.ticketId].send('扫码成功')
                 if(!dats[0]){code='0009';msg='无此优惠券'}else{code='0000';msg='查询成功'}
                 res.jsonp({data:dats[0],code:code,mess:msg})
             }
@@ -164,28 +190,6 @@ router.post('/selectWXImg',(req,res,next)=>{
     }
     sql.Connect(query)
 })
-
-/*ws*/
-var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({ port: 8181 });
-var sockets = {};
-wss.on('connection', function (ws) {
-    console.log('client connected',i,sockets.length);
-    ws.on('message', function (message) {
-        var newMes=JSON.parse(message);
-        switch(newMes.type){
-            case 'userd':
-                sockets[newMes.id].send('isUserd');
-                delete sockets[newMes.id];
-                break;
-            case 'toUse':
-                sockets[newMes.id]=ws;
-                break;
-            default:
-        }
-    });
-});
-
 
 
 module.exports = router;
