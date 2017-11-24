@@ -17,14 +17,12 @@ wss.on('connection', function (ws) {
     console.log('client connected',sockets.length);
     ws.on('message', function (message) {
         var newMes=JSON.parse(message);
-        console.log(newMes);
         switch(newMes.type){
             case 'userd':
                 sockets[newMes.id].send('isUserd');
                 delete sockets[newMes.id];
                 break;
             case 'toUse':
-                console.log(newMes);
                 sockets[newMes.id]=ws;
                 break;
             default:
@@ -122,6 +120,7 @@ router.post('/getCoupon',(req,res,next)=>{
             "b.PLATENO,b.CXMC,b.CUSTOMERNAME,b.TELEPHONE,b.repair_Moneny"+
             " FROM tmx_coupon_xlc_user a,xlc_pushtask b WHERE a.task_id = b.ID and ticket_id='"+req.body.ticketId+"'",
             success: (dats) => {
+                console.log(sockets[req.body.ticketId]);
                 sockets[req.body.ticketId] && sockets[req.body.ticketId].send('扫码成功')
                 if(!dats[0]){code='0009';msg='无此优惠券'}else{code='0000';msg='查询成功'}
                 res.jsonp({data:dats[0],code:code,mess:msg})
