@@ -130,6 +130,10 @@ router.post('/getCoupon',(req,res,next)=>{
     sql.Connect(query)
 })
 
+router.post('/saoOk',(req,res,next)=>{
+    sockets[req.body.ticketId] && sockets[req.body.ticketId].send('使用完成')
+})
+
 
 
 
