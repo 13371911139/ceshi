@@ -143,8 +143,8 @@ router.post('/saoOk',(req,res,next)=>{
             ab='sOk'
             break;
     }
-
-    sockets[req.body.ticketId] && sockets[req.body.ticketId].send(ab)
+    sockets[req.body.ticketId] && sockets[req.body.ticketId].send(ab);
+    res.write('<h4>成功了呢</h4>');
 })
 
 
