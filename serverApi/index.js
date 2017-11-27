@@ -131,7 +131,20 @@ router.post('/getCoupon',(req,res,next)=>{
 })
 
 router.post('/saoOk',(req,res,next)=>{
-    sockets[req.body.ticketId] && sockets[req.body.ticketId].send('isUserd')
+    var ab='sOk'
+    switch(req.body.type){
+        case 'ok':
+            ab='ok'
+            break;
+        case 'nOk':
+            ab='nOk'
+            break;
+        default:
+            ab='sOk'
+            break;
+    }
+
+    sockets[req.body.ticketId] && sockets[req.body.ticketId].send(ab)
 })
 
 
