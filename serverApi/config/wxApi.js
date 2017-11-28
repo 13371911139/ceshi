@@ -20,7 +20,7 @@ const wxApi={
             timestamp: wxApi.createTimestamp(),
             url: url
         }
-        var string = raw(ret);
+        var string = wxApi.raw(ret);
         jsSHA = require('jssha');
         shaObj = new jsSHA(string, 'TEXT');
         ret.signature = shaObj.getHash('SHA-1', 'HEX');
