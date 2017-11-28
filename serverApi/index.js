@@ -14,6 +14,7 @@ var projjj=true;
 var WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({ port: 8181 });
 var sockets = {};
+global.tokenData={time:0}
 wss.on('connection', function (ws) {
     console.log('client connected',sockets.length);
     ws.on('message', function (message) {
@@ -43,14 +44,20 @@ global.getTok='https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'
 //更新token
 global.rtoken ='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN'
 
-const getTicket ='https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi'
 
 
-var tokenData={time:0}
 router.post('/getSignature',(req,res,next)=>{
     var nowTime=Date.parse( new Date());
     if(!tokenData.time || (tokenData.time-nowTime)>=7000000){
-        wxApi.getToken()
+        wxApi.getToken((rest)=>{
+            if(rest.access_token){
+                tokenData.token=rest.access_token;
+                tokenData.time=nowTime;
+                wxApi.getTicket((e)=>{
+                    
+                })
+            }
+        })
     }else{
 
     }
