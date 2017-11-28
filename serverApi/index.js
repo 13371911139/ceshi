@@ -42,7 +42,7 @@ router.get('/showEWM/:id',(req,res,next)=>{
     if(req.params.id == 'isAdd'){
         var data=req.query;
         var url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
-        var getHeader='https://api.weixin.qq.com/sns/userinfo?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
+        var getHeader='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
         superagent
             .get(getHeader)
             .accept('json')
