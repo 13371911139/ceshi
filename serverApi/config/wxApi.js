@@ -5,7 +5,7 @@ const wxApi={
     getToken:()=>{
         superagent.get(getToken).accept('json').end(function(reqe,rese){
 
-            res.json(rese.body)
+           console.log(rese.body)
         });
     }
 }
