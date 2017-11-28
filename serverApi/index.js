@@ -48,7 +48,6 @@ global.rtoken ='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&g
 
 router.post('/getSignature',(req,res,next)=>{
     var nowTime=Date.parse( new Date());
-    console.log(req.body);
     if(!tokenData.time || (tokenData.time-nowTime)>=7000000){
         wxApi.getToken((rest)=>{
             if(rest.access_token){
@@ -56,8 +55,8 @@ router.post('/getSignature',(req,res,next)=>{
                 tokenData.time=nowTime;
                 wxApi.getTicket((resg)=>{
                     tokenData.ticket=resg.ticket;
-                    wxApi.addSignature(req.body.url,(sresp)=>{
-                        res.json({sresp})
+                    wxApi.addSignature(req.body.url,(data)=>{
+                        res.json(data)
                     })
                 })
             }

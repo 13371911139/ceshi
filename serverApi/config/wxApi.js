@@ -16,12 +16,11 @@ const wxApi={
     addSignature:(url,fun)=>{
         var ret = {
             jsapi_ticket: tokenData.ticket,
-            nonceStr: wxApi.createNonceStr(),
+            noncestr: wxApi.createNonceStr(),
             timestamp: wxApi.createTimestamp(),
             url: url.split('?')[0]
         }
         var string = wxApi.raw(ret);
-        console.log(string)
         var jsSHA = require('jssha');
         var shaObj = new jsSHA('SHA-1', 'TEXT');
         shaObj.update(string)
