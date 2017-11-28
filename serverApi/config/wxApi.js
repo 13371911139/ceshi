@@ -22,9 +22,10 @@ const wxApi={
         }
         var string = wxApi.raw(ret);
         console.log(string)
-        jsSHA = require('jssha');
-        shaObj = new jsSHA(string, 'TEXT');
-        ret.signature = shaObj.getHash('SHA-1', 'HEX');
+        var jsSHA = require('jssha');
+        var shaObj = new jsSHA('SHA-1', 'TEXT');
+        shaObj.update(string)
+        ret.signature = shaObj.getHash('HEX');
         fun && fun(ret)
     },
     createNonceStr:()=>{
