@@ -42,9 +42,9 @@ router.get('/showEWM/:id',(req,res,next)=>{
     if(req.params.id == 'isAdd'){
         var data=req.query;
         var url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN'
-        console.log(data,url);
+        var getHeader=' https://api.weixin.qq.com/sns/userinfo?access_token='+data.token+'&openid='+data.openid+'&lang=zh_CN '
         superagent
-            .get(url)
+            .get(getHeader)
             .accept('json')
             .set('X-API-Key', 'foobar')
             .set('Accept', 'application/json')
