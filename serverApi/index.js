@@ -47,7 +47,7 @@ const getTicket ='https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_toke
 
 
 var tokenData={time:0}
-router.get('/getSignature',(req,res,next)=>{
+router.post('/getSignature',(req,res,next)=>{
     var nowTime=Date.parse( new Date());
     if(!tokenData.time || (tokenData.time-nowTime)>=7000000){
         wxApi.getToken()
