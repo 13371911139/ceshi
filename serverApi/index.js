@@ -53,8 +53,11 @@ router.post('/getSignature',(req,res,next)=>{
             if(rest.access_token){
                 tokenData.token=rest.access_token;
                 tokenData.time=nowTime;
-                wxApi.getTicket((e)=>{
-                    
+                wxApi.getTicket((resg)=>{
+                    tokenData.ticket=resg.ticket;
+                    wxApi.addSignature(req.body.url,(sresp)=>{
+                        res.json({sresp})
+                    })
                 })
             }
         })
