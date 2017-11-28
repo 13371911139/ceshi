@@ -3,6 +3,7 @@ var superagent = require('superagent');
 var jsonp = require('superagent-jsonp')
 var sql=require('./config/ConnectDatabase');
 var http=require('http')
+var wxApi = require('./config/wxApi')
 var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
 var projjj=true;
@@ -33,9 +34,27 @@ wss.on('connection', function (ws) {
         console.log('关闭了'+e);
     })
 });
+global.APPID='wx4b3cc819d682ce0e';
+global.APPSECRET='07826b26a4f149ccfacba09426fa980c'
+//获取基础支持的access_token
+global.getToken='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+APPID+'&secret='+APPSECRET
+//获取openid，普通access_token
+global.getTok='https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+APPSECRET+'&code=CODE&grant_type=authorization_code'
+//更新token
+global.rtoken ='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN'
+
+const getTicket ='https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi'
 
 
+var tokenData={time:0}
+router.get('/getSignature',(req,res,next)=>{
+    var nowTime=Date.parse( new Date());
+    if(!tokenData.time || (tokenData.time-nowTime)>=7000000){
+        wxApi.getToken()
+    }else{
 
+    }
+})
 
 //首页
 router.get('/showEWM/:id',(req,res,next)=>{
