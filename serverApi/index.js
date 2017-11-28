@@ -49,7 +49,7 @@ router.get('/showEWM/:id',(req,res,next)=>{
             .set('X-API-Key', 'foobar')
             .set('Accept', 'application/json')
             .end(function(reqe,rese){
-                console.log(rese.body,getHeader);
+                console.log(rese,getHeader);
                 res.json(rese.body)
             });
     }else{
