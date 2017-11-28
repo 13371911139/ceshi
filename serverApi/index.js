@@ -28,6 +28,9 @@ wss.on('connection', function (ws) {
             default:
         }
     });
+    ws.on('close',function(e){
+        console.log('关闭了'+e);
+    })
 });
 
 
