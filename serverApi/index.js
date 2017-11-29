@@ -48,6 +48,14 @@ global.rtoken ='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&g
 
 router.use('/getSignature',(req,res,next)=>{
     var nowTime=Date.parse( new Date());
+    var reg = new RegExp("(^|&)" + 'code' + "=([^&]*)(&|$)");
+    var r = req.body.url.substr(1).match(reg);
+    var code=unescape(r[2]) || '';
+    if(code){
+        wxApi. getOpenId(code,(dat)=>{
+
+        })
+    }
     if(!tokenData.time || (nowTime-tokenData.time)>=7000000){
         wxApi.getToken((rest)=>{
             if(rest.access_token){
@@ -58,8 +66,6 @@ router.use('/getSignature',(req,res,next)=>{
                     wxApi.addSignature(req.body.url,(data)=>{
                         console.log('现场获取取得')
                         data.appid=tokenData.appid;
-                        next()
-                        //res.json(data)
                     })
                 })
             }
@@ -68,16 +74,13 @@ router.use('/getSignature',(req,res,next)=>{
         wxApi.addSignature(req.body.url,(data)=>{
             console.log('从内存取得')
             data.appid=tokenData.appid;
-            next()
-            //res.json(data)
         })
     }
+    next()
 })
 router.post('/getSignature',(req,res,next)=>{
-    var reg = new RegExp("(^|&)" + 'code' + "=([^&]*)(&|$)");
-    var r = req.body.url.substr(1).match(reg);
-    var code=unescape(r[2]) || '';
-    console.log(code)
+
+
 })
 
 //首页
