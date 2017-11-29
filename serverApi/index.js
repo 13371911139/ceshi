@@ -66,9 +66,10 @@ router.use('/getSignature',(req,res,next)=>{
         })
     }else{
         wxApi.addSignature(req.body.url,(data)=>{
-            console.log('从内存取得')
+
             data.appid=tokenData.appid;
             req.singData=data;
+            console.log('从内存取得')
             next()
         })
     }
