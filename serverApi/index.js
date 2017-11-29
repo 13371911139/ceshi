@@ -53,7 +53,7 @@ router.post('/getSignature',(req,res,next)=>{
     var code=unescape(r[2]);
     console.log(code);
     if(!tokenData.time || (nowTime-tokenData.time)>=7000000){
-        wxApi.getToken((rest)=>{
+        wxApi.getOpenId(code,(rest)=>{
             if(rest.access_token){
                 tokenData.token=rest.access_token;
                 tokenData.time=nowTime;
