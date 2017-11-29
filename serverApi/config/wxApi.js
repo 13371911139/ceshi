@@ -58,8 +58,8 @@ const wxApi={
     },
     //获取openid
     getOpenId:(code,fun)=>{
-        var getOpenId='https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+APPSECRET+'&code='+code+'&grant_type=authorization_code'
-        superagent.get(getOpenId).accept('json').end(function(reqe,rese){
+        var getOps='https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+APPSECRET+'&code='+code+'&grant_type=authorization_code'
+        superagent.get(getOps).accept('json').end(function(reqe,rese){
             console.log(rese.body,'获取openid？？？？？',getOpenId)
             fun && fun(rese.body)
         });
