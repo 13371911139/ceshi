@@ -47,10 +47,6 @@ global.rtoken ='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&g
 
 
 router.post('/getSignature',(req,res,next)=>{
-    var nowTime=Date.parse( new Date());
-    var reg = new RegExp("(^|&)" + 'code' + "=([^&]*)(&|$)");
-    var r = req.body.url.substr(1).match(reg);
-    var code=unescape(r[2]) || '';
     if(!tokenData.time || (nowTime-tokenData.time)>=7000000){
         wxApi.getToken((rest)=>{
             if(rest.access_token){
@@ -77,7 +73,11 @@ router.post('/getSignature',(req,res,next)=>{
     }
 })
 router.use('/nextSign',(req,res,next)=>{
-    console.log(data)
+    var nowTime=Date.parse( new Date());
+    var reg = new RegExp("(^|&)" + 'code' + "=([^&]*)(&|$)");
+    var r = req.body.url.substr(1).match(reg);
+    var code=unescape(r[2]) || '';
+    console.log(code)
 })
 
 //首页
