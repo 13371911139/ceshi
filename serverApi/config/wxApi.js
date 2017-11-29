@@ -80,6 +80,13 @@ const wxApi={
         superagent.get(urls).accept('json').end(function(reqe,rese){
             console.log(urls)
             console.log(tokenData,rese.body,rese.text,'刷新token')
+            try{
+                var newMes=JSON.parse(rese.text);
+            }catch(e){
+                console.log(e)
+                var newMes={}
+            }
+            fun && fun(newMes)
         })
     }
 }

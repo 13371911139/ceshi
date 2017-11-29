@@ -90,7 +90,7 @@ router.post('/getSignature',(req,res,next)=>{
         }else{
             wxApi.refreshToken(req.cookies.refreshToken,(dat)=>{
                 req.singData.openid=dat.openid;
-                console.log(req.singData)
+                res.cookie('refreshToken', dat.refresh_token)
                 res.json(req.singData)
             })
         }
