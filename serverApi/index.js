@@ -83,7 +83,7 @@ router.post('/getSignature',(req,res,next)=>{
         console.log(req.headers.cookie.refreshToken,'cookie')
         if(!tokenData.refreshTokenTime || (nowTime-tokenData.refreshTokenTime) >7000000){
             wxApi.getOpenId(code,(dat)=>{
-                res.cookie('refreshToken', dat.refresh_token)
+                res.cookie('refreshToken', dat.refresh_token || 99999)
                 req.singData.openid=dat.openid;
                 res.json(req.singData)
             })
