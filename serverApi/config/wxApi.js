@@ -56,19 +56,26 @@ const wxApi={
         string = string.substr(1);
         return string;
     },
-    //获取openid
+    //获取openid 几分钟内不能连续获取
     getOpenId:(code,fun)=>{
         var getOps='https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+APPSECRET+'&code='+code+'&grant_type=authorization_code';
         superagent.get('https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+APPSECRET+'&code='+code+'&grant_type=authorization_code&lang=zh_CN').accept('json').end(function(reqe,rese){
-            console.log(rese.text)
             try{
                 var newMes=JSON.parse(rese.text);
             }catch(e){
                 console.log(e)
                 var newMes={}
             }
+            tokenData.refreshToken=newMes.refresh_token;
+            tokenData.refreshTokenTime=Date.parse( new Date());
             fun && fun(newMes)
         });
+    },
+    //刷新openid
+    refreshToken:(fun)=>{
+        superagent.get('https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='+APPID+'&grant_type=refresh_token&refresh_token='+tokenData.refreshToken).accept('json').end(function(reqe,rese){
+            console.log(rese.body,rese,text)
+        })
     }
 }
 module.exports = wxApi;

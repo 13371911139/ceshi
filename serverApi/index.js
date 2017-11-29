@@ -74,14 +74,23 @@ router.use('/getSignature',(req,res,next)=>{
     }
 })
 router.post('/getSignature',(req,res,next)=>{
+    var nowTime=Date.parse( new Date());
     var reg = new RegExp("(^|&)" + 'code' + "=([^&]*)(&|$)");
     var r = req.body.url.substr(1).match(reg);
     var code=unescape(r[2]) || '';
     if(code){
-        wxApi.getOpenId(code,(dat)=>{
-            req.singData.openid=dat.openid;
-            res.json(req.singData)
-        })
+        if(tokenData.refreshToken && (nowTime-tokenData.refreshTokenTime) >7000000){
+            wxApi.getOpenId(code,(dat)=>{
+                req.singData.openid=dat.openid;
+                res.json(req.singData)
+            })
+        }else{
+            wxApi.refreshToken((dat)=>{
+                req.singData.openid=dat.openid;
+                res.json(req.singData)
+            })
+        }
+
     }
 })
 
