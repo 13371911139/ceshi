@@ -18,7 +18,7 @@ const wxApi={
             jsapi_ticket: tokenData.ticket,
             noncestr: wxApi.createNonceStr(),
             timestamp: wxApi.createTimestamp(),
-            url: url.split('?')[0]
+            url: url.split('#')[0]
         }
         var string = wxApi.raw(ret);
         var jsSHA = require('jssha');
