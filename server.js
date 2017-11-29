@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 var superagent = require('superagent');
 var app=express();
 var router = express.Router();
+var cookiePareser = require('cookie-parser')
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookiePareser());
 //app.use(express.bodyParser())
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
