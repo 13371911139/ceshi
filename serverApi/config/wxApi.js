@@ -67,8 +67,10 @@ const wxApi={
                 var newMes={}
             }
             console.log(newMes)
-            tokenData.refreshToken=newMes.refresh_token;
-            tokenData.refreshTokenTime=Date.parse( new Date());
+            if(newMes.refresh_token){
+                tokenData.refreshToken=newMes.refresh_token;
+                tokenData.refreshTokenTime=Date.parse( new Date());
+            }
             fun && fun(newMes)
         });
     },
