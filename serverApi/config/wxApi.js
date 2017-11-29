@@ -76,7 +76,8 @@ const wxApi={
     },
     //刷新openid
     refreshToken:(token,fun)=>{
-        superagent.get('https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='+APPID+'&grant_type=refresh_token&refresh_token='+token).accept('json').end(function(reqe,rese){
+        var urls='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='+APPID+'&grant_type=refresh_token&refresh_token='+token
+        superagent.get(urls).accept('json').end(function(reqe,rese){
             console.log(tokenData,rese.body,rese.text,'刷新token')
         })
     }

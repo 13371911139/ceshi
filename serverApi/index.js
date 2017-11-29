@@ -82,6 +82,7 @@ router.post('/getSignature',(req,res,next)=>{
     if(code){
         if(!req.cookies.refreshToken){
             wxApi.getOpenId(code,(dat)=>{
+                //费缓存
                 res.cookie('refreshToken', dat.refresh_token)
                 req.singData.openid=dat.openid;
                 res.json(req.singData)
@@ -89,6 +90,7 @@ router.post('/getSignature',(req,res,next)=>{
         }else{
             wxApi.refreshToken(req.cookies.refreshToken,(dat)=>{
                 req.singData.openid=dat.openid;
+                console.log(req.singData)
                 res.json(req.singData)
             })
         }
