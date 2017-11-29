@@ -14,7 +14,9 @@ var projjj=true;
 var WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({ port: 8181 });
 var sockets = {};
-global.tokenData={time:0}
+global.APPID='wx4b3cc819d682ce0e';
+global.APPSECRET='07826b26a4f149ccfacba09426fa980c'
+global.tokenData={time:0,appid:APPID}
 wss.on('connection', function (ws) {
     console.log('client connected',sockets.length);
     ws.on('message', function (message) {
@@ -35,8 +37,6 @@ wss.on('connection', function (ws) {
         console.log('关闭了'+e);
     })
 });
-global.APPID='wx4b3cc819d682ce0e';
-global.APPSECRET='07826b26a4f149ccfacba09426fa980c'
 //获取基础支持的access_token
 global.getToken='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+APPID+'&secret='+APPSECRET
 //获取openid，普通access_token
@@ -56,13 +56,17 @@ router.post('/getSignature',(req,res,next)=>{
                 wxApi.getTicket((resg)=>{
                     tokenData.ticket=resg.ticket;
                     wxApi.addSignature(req.body.url,(data)=>{
-                        res.json(data)
+                        console.log('现场获取取得')
+                        res.json({...data,appid:tokenData.appid})
                     })
                 })
             }
         })
     }else{
-
+        wxApi.addSignature(req.body.url,(data)=>{
+            console.log('从内存取得')
+            res.json({...data,appid:tokenData.appid})
+        })
     }
 })
 
