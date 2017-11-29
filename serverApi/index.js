@@ -78,8 +78,8 @@ router.post('/getSignature',(req,res,next)=>{
     var r = req.body.url.substr(1).match(reg);
     var code=unescape(r[2]) || '';
     if(code){
-        wxApi. getOpenId(code,(dat)=>{
-            req.singData.openid=data.openid;
+        wxApi.getOpenId(code,(dat)=>{
+            req.singData.openid=dat.openid;
             res.json(req.singData)
         })
     }
