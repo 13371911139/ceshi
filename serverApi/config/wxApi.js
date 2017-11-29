@@ -66,6 +66,7 @@ const wxApi={
                 console.log(e)
                 var newMes={}
             }
+            console.log(newMes)
             tokenData.refreshToken=newMes.refresh_token;
             tokenData.refreshTokenTime=Date.parse( new Date());
             fun && fun(newMes)
