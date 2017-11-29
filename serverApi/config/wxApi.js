@@ -75,8 +75,8 @@ const wxApi={
         });
     },
     //刷新openid
-    refreshToken:(fun)=>{
-        superagent.get('https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='+APPID+'&grant_type=refresh_token&refresh_token='+tokenData.refreshToken).accept('json').end(function(reqe,rese){
+    refreshToken:(token,fun)=>{
+        superagent.get('https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='+APPID+'&grant_type=refresh_token&refresh_token='+token).accept('json').end(function(reqe,rese){
             console.log(tokenData,rese.body,rese.text,'刷新token')
         })
     }
