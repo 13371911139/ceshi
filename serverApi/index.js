@@ -50,10 +50,9 @@ router.post('/getSignature',(req,res,next)=>{
     var nowTime=Date.parse( new Date());
     var reg = new RegExp("(^|&)" + 'code' + "=([^&]*)(&|$)");
     var r = req.body.url.substr(1).match(reg);
-    var code=unescape(r[2]);
-    console.log(code);
+    var code=unescape(r[2]) || '';
     if(!tokenData.time || (nowTime-tokenData.time)>=7000000){
-        wxApi.getOpenId(code,(rest)=>{
+        wxApi.getToken(code,(rest)=>{
             if(rest.access_token){
                 tokenData.token=rest.access_token;
                 tokenData.time=nowTime;
@@ -62,7 +61,8 @@ router.post('/getSignature',(req,res,next)=>{
                     wxApi.addSignature(req.body.url,(data)=>{
                         console.log('现场获取取得')
                         data.appid=tokenData.appid;
-                        res.json(data)
+                        next('/nextSign')
+                        //res.json(data)
                     })
                 })
             }
@@ -71,9 +71,13 @@ router.post('/getSignature',(req,res,next)=>{
         wxApi.addSignature(req.body.url,(data)=>{
             console.log('从内存取得')
             data.appid=tokenData.appid;
-            res.json(data)
+            next('/nextSign')
+            //res.json(data)
         })
     }
+})
+router.use('/nextSign',(req,res,next)=>{
+    console.log(data)
 })
 
 //首页
