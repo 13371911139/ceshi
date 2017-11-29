@@ -74,13 +74,13 @@ router.use('/getSignature',(req,res,next)=>{
         wxApi.addSignature(req.body.url,(data)=>{
             console.log('从内存取得')
             data.appid=tokenData.appid;
+            tokenData.singdata=data;
         })
     }
     next()
 })
 router.post('/getSignature',(req,res,next)=>{
-
-
+    console.log(tokenData);
 })
 
 //首页
