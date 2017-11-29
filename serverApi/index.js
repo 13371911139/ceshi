@@ -57,7 +57,8 @@ router.post('/getSignature',(req,res,next)=>{
                     tokenData.ticket=resg.ticket;
                     wxApi.addSignature(req.body.url,(data)=>{
                         console.log('现场获取取得')
-                        res.json({...data,appid:tokenData.appid})
+                        data.appid=tokenData.appid;
+                        res.json(data)
                     })
                 })
             }
@@ -65,7 +66,8 @@ router.post('/getSignature',(req,res,next)=>{
     }else{
         wxApi.addSignature(req.body.url,(data)=>{
             console.log('从内存取得')
-            res.json({...data,appid:tokenData.appid})
+            data.appid=tokenData.appid;
+            res.json(data)
         })
     }
 })
