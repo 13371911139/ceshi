@@ -79,7 +79,7 @@ router.post('/getSignature',(req,res,next)=>{
     var r = req.body.url.substr(1).match(reg);
     var code=unescape(r[2]) || '';
     if(code){
-        if(tokenData.refreshToken && (nowTime-tokenData.refreshTokenTime) >7000000){
+        if(!tokenData.refreshTokenTime || (nowTime-tokenData.refreshTokenTime) >7000000){
             wxApi.getOpenId(code,(dat)=>{
                 req.singData.openid=dat.openid;
                 res.json(req.singData)
