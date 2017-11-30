@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #peijianDs{ width:80%;min-width:700px;max-weight:1000px;}
+        #peijianDs *{
+            box-sizing: border-box;
+            list-style:none;padding:0px;margin:0px;
+            font-size:12px;
+        }
+        #peijianDs .title{
+            width:100%;height:40px;background:#dd6767;
+            padding:0 25px;line-height:40px;color:#FFF;font-size:13px;
+        }
+        #peijianDs .nav{
+            border-bottom:1px solid #dd6767;
+            height:31px;
+        }
+        #peijianDs .DSBox{margin-top:15px;}
+        #peijianDs .nav ul,#peijianDs .DSBody{width:90%;margin:auto}
+        #peijianDs .nav li{
+            cursor:pointer;
+            height:30px;padding:0 10px;line-height:30px;position:relative;background:#fff;
+            float:left;list-style:none;border:1px solid #ccc; border-bottom:0px;border-left:0px;
+        }
+        #peijianDs .nav li:nth-child(1){border-left:1px solid #ccc;}
+        #peijianDs .nav li:hover{
+            top:1px;color:#dd6767;
+            border-top:2px solid #dd6767;
+            border-left:1px solid #dd6767;
+            border-right:1px solid #dd6767;
+            border-bottom:1px solid #fff;
+        }
+        #peijianDs .nav li.on {top:1px;color:#dd6767;
+            border-top:2px solid #dd6767;
+            border-left:1px solid #dd6767;
+            border-right:1px solid #dd6767;
+            border-bottom:1px solid #fff;
+        }
+        #peijianDs .DSBody{
+            margin-top:15px;display:flex;
+            border:1px solid #ddd;
+        }
+        #peijianDs .DSBody ul{
+            flex:1;
+        }
+        #peijianDs .DSBody ul:nth-child(1){
+            flex:none;
+            width:200px;
+        }
+        #peijianDs .DSBody ul{
+            border-left:1px solid #ddd;
+        }
+        #peijianDs .DSBody ul li{
+            border-top:1px solid #ddd;
+            height:90px;position:relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #peijianDs .DSBody ul li input{margin-right:12px;}
+        #peijianDs .DSBody ul:nth-child(1){border:0px;}
+        #peijianDs .DSBody ul li:nth-child(1){
+            background:#f5f5f6;border-top:0px;height:64px;
+        }
+        #peijianDs .DSBody ul li.lH:before{
+            position: absolute;
+            top: 0px;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            border-bottom: 64px solid red;
+            border-right: 200px solid transparent;
+            content: "";
+        }
+        #peijianDs .DSBody ul li.lH:after{
+            position: absolute;
+            left: 0;
+            right: 1px;
+            top: 1px;
+            bottom: 0;
+            border-bottom: 64px solid white;
+            border-right: 200px solid transparent;
+            content: "";
+        }
+        #peijianDs .DSBody ul li.lH span{
+            position:absolute;z-index:999;
+            left:10%;bottom:10%;
+        }
+        #peijianDs .DSBody ul li.lH span:nth-child(2){
+            right:10%;top:10%;left:inherit;bottom:inherit;
+        }
+        #peijianDs .DSBody ul li span{display:block;text-align:left;}
+    </style>
+    <title>配件电商</title>
+</head>
+<body>
+	<div id='nihao'></div>
+    <div id="peijianDs">
+        <div class="title">前保险杠报价</div>
+        <div class="DSBox">
+            <div class="nav">
+                <ul>
+                    <li class="on">产检配件电商平台</li>
+                    <li>产检配件电商平台</li>
+                    <li>产检配件电商平台</li>
+                </ul>
+            </div>
+            <div class="DSBody">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+<script>
+	//$('#nihao').load('http://localhost:8099/server/pc',{'taskId':'2c905cc760056b840160056e10990001','partId':'2c905cc760056b840160056e11210006'})
+    $.post('http://www.beidouchaxun.cn/toumingxiu/insEnquiry/getPartQuoteInfo.do',{taskId:'{{dataList.taskId}}',partId:'{{dataList.partId}}'},function(dat){
+        dat={
+            "enquiryQuoteList": [
+                {
+                    "businessId": "d2d6b386-ac50-4dc7-8a47-5002016e39b3",//配件商id
+                    "businessQuoteId": "c5ad01fb-7c3d-4520-8330-5fc9717c8ee1",
+                    "companyName": "",//配件名称
+                    "createTime": {
+                        "date": 29,
+                        "day": 3,
+                        "hours": 9,
+                        "minutes": 42,
+                        "month": 10,
+                        "nanos": 0,
+                        "seconds": 32,
+                        "time": 1511919752000,
+                        "timezoneOffset": -480,
+                        "year": 117
+                    },
+                    "createUser": "3",
+                    "delFlag": "",
+                    "enquiryNo": "TMXXJD120171129094013664",
+                    "id": "2c905cc760056b840160057096b2000f",
+                    "isComfirm": "0",
+                    "isPay": "0",
+                    "isQhFlag": "",
+                    "isSelected": "0",
+                    "mobilePhone": "",//配件商联系电话
+                    "partBrandName": "",
+                    "partEnquiryId": "03e88ac0-27ec-46e2-8617-1d88027e2f31",
+                    "partId": "2c905cc760056b840160056e11210006",
+                    "partManageFee": 0,
+                    "partManageRate": "",
+                    "partNum": "1",
+                    "partPlatformId": "3",
+                    "partPrice": "200",
+                    "partQuoteValidDate": {},
+                    "platformFactPartCode": "71101SDET00ZZ",
+                    "platformFactPartName": "前保险杠皮",
+                    "platformPartType": "1",
+                    "pushTaskId": "2c905cc760056b840160056e10990001",
+                    "quoteRemark": "",
+                    "reportNo": "",
+                    "tmxPartType": "1",//品质
+                    "tmxcPartEnquiryNo": "",
+                    "updateTime": {},
+                    "updateUser": ""
+                },
+                {
+                    "businessId": "d2d6b386-ac50-4dc7-8a47-5002016e39b3",
+                    "businessQuoteId": "7ddb1e37-2a59-4564-9e63-a46d4d892570",
+                    "companyName": "",
+                    "createTime": {
+                        "date": 29,
+                        "day": 3,
+                        "hours": 9,
+                        "minutes": 42,
+                        "month": 10,
+                        "nanos": 0,
+                        "seconds": 32,
+                        "time": 1511919752000,
+                        "timezoneOffset": -480,
+                        "year": 117
+                    },
+                    "createUser": "3",
+                    "delFlag": "",
+                    "enquiryNo": "TMXXJD120171129094013664",
+                    "id": "2c905cc760056b840160057096b20013",
+                    "isComfirm": "0",
+                    "isPay": "0",
+                    "isQhFlag": "",
+                    "isSelected": "0",
+                    "mobilePhone": "",
+                    "partBrandName": "1",
+                    "partEnquiryId": "8cd9dce5-c973-4e70-a420-327188f30a41",
+                    "partId": "2c905cc760056b840160056e11210006",
+                    "partManageFee": 0,
+                    "partManageRate": "",
+                    "partNum": "1",
+                    "partPlatformId": "3",
+                    "partPrice": "100",
+                    "partQuoteValidDate": {},
+                    "platformFactPartCode": "71101SDET00ZZ",
+                    "platformFactPartName": "前保险杠皮",
+                    "platformPartType": "2",
+                    "pushTaskId": "2c905cc760056b840160056e10990001",
+                    "quoteRemark": "",
+                    "reportNo": "",
+                    "tmxPartType": "2",
+                    "tmxcPartEnquiryNo": "",
+                    "updateTime": {},
+                    "updateUser": ""
+                },
+                {
+                    "businessId": "d2d6b386-ac50-4dc7-8a47-5002016e39b3",
+                    "businessQuoteId": "84e6f6b7-8b3b-4f5d-be02-30d8342e5b9f",
+                    "companyName": "",
+                    "createTime": {
+                        "date": 29,
+                        "day": 3,
+                        "hours": 9,
+                        "minutes": 42,
+                        "month": 10,
+                        "nanos": 0,
+                        "seconds": 32,
+                        "time": 1511919752000,
+                        "timezoneOffset": -480,
+                        "year": 117
+                    },
+                    "createUser": "3",
+                    "delFlag": "",
+                    "enquiryNo": "TMXXJD120171129094013664",
+                    "id": "2c905cc760056b840160057096b30017",
+                    "isComfirm": "0",
+                    "isPay": "0",
+                    "isQhFlag": "",
+                    "isSelected": "0",
+                    "mobilePhone": "",
+                    "partBrandName": "1",
+                    "partEnquiryId": "65309611-5ea1-4420-aac3-c3bdaf1ccb27",
+                    "partId": "2c905cc760056b840160056e11210006",
+                    "partManageFee": 0,
+                    "partManageRate": "",
+                    "partNum": "1",
+                    "partPlatformId": "3",
+                    "partPrice": "50",
+                    "partQuoteValidDate": {},
+                    "platformFactPartCode": "71101SDET00ZZ",
+                    "platformFactPartName": "前保险杠皮",
+                    "platformPartType": "5",
+                    "pushTaskId": "2c905cc760056b840160056e10990001",
+                    "quoteRemark": "",
+                    "reportNo": "",
+                    "tmxPartType": "4",
+                    "tmxcPartEnquiryNo": "",
+                    "updateTime": {},
+                    "updateUser": ""
+                }
+            ],
+            "partId": "2c905cc760056b840160056e11210006",
+            "partName": "前保险杠皮",
+            "platformInfos": [
+                {
+                    "address": "盛夏路560号",
+                    "billingInfo": "",
+                    "cityAreaId": "",
+                    "cityAreaName": "崇明县",
+                    "cityId": "",
+                    "cityName": "安庆",
+                    "createBy": "",
+                    "createDate": "",
+                    "delFlag": "0",
+                    "ename": "chengche",
+                    "enquiryFlag": "",
+                    "id": "3",
+                    "isopen": "0",
+                    "logopath": "logo",
+                    "name": "车件儿汽配电商平台",
+                    "phone": "13564839054",
+                    "proviceId": "",
+                    "proviceName": "安徽省",
+                    "remarks": "",
+                    "shortName": "橙车",
+                    "tmxCarType": "2",
+                    "tmxCarTypeList": [
+                        "0",
+                        "1"
+                    ],
+                    "tmxPartsQuality": "1,2,4",
+                    "tmxPartsQualityList": [
+                        "1",
+                        "2",
+                        "4"
+                    ],
+                    "updateBy": "",
+                    "updateDate": ""
+                }
+            ]
+        }
+        dataUl(dat);
+            console.log(dat)
+    })
+
+
+    var a=$('<div></div>');
+    var arr=[
+        {left:'配件类型',right:'配件商',type:'bTitle'},
+        {name:'原厂流通件',gz:'(参考上限:-)',type:'bValue'},
+        {name:'OEM件',gz:'参考上限:-',type:'bValue'},
+        {name:'认证件',gz:null,type:'bValue'},
+        {name:'非OEM品牌件',gz:'(参考上限:-)',type:'bValue'},
+        {name:'拆车件',gz:'(参考上限:-)',type:'bValue'},
+        {name:'其他',gz:null,type:'bValue'}
+    ];
+    function AddUl(arr){
+        var ulDom=$('<ul>')
+        for(var i=0;i<=6;i++){
+            var liDom=$('<li>').append('<div>');
+            !arr[i] && (arr[i]={})
+            switch(arr[i].type){
+                case 'bTitle':
+                    liDom.attr('class','lH').find('div').append('<span>'+arr[i].left+'</span>')
+                        .append('<span>'+arr[i].right+'</span>')
+                    break;
+                case 'bValue':
+                    liDom.find('div').append('<span>'+arr[i].name+'</span>')
+                        .append('<span>'+arr[i].gz+'</span>')
+                    break;
+                case 'pTitle':
+                    liDom.find('div').append('<span>'+arr[i].name+'</span>')
+                    break;
+                case 'pValue':
+                    liDom.prepend('<input type="radio"/>')
+                        .find('div')
+                        .append('<span>数量:'+arr[i].num+'</span>')
+                        .append('<span>单价:'+arr[i].partPrice+'</span>')
+                        .append('<span>品牌:'+arr[i].PartName+'</span>')
+                        .append('<span>预计管理费:'+arr[i].partManageFee+'</span>')
+                    break;
+                default:
+                    liDom.find('div').append('')
+
+            }
+            ulDom.append(liDom)
+        }
+        $('.DSBody').append(ulDom)
+    }
+    function dataUl(data){
+        var am=$('<ul>');
+        for(var i in data.platformInfos){
+            if(data.platformInfos[i].name){
+                var uli=$("<li>").text(data.platformInfos[i].name).attr('data-Id',data.platformInfos[i].id)
+                i==0 && uli.attr('class','on')
+                am.append(uli);
+            }
+        }
+        var pjArr={arr:[
+            {left:'配件类型',right:'配件商',type:'bTitle'},
+            {name:'原厂流通件',gz:'(参考上限:-)',type:'bValue'},
+            {name:'OEM件',gz:'参考上限:-',type:'bValue'},
+            {name:'认证件',gz:null,type:'bValue'},
+            {name:'非OEM品牌件',gz:'(参考上限:-)',type:'bValue'},
+            {name:'拆车件',gz:'(参考上限:-)',type:'bValue'},
+            {name:'其他',gz:null,type:'bValue'}
+        ]}
+        for(var i in data.enquiryQuoteList){
+            var newDa=data.enquiryQuoteList[i]
+            if(!pjArr[newDa.businessId]){
+                pjArr[newDa.businessId]=[];
+                pjArr[newDa.businessId][0]={type:'pTitle',name:newDa.businessName || '配件电商'}
+            }
+            pjArr[newDa.businessId][newDa.tmxPartType]={
+                type:'pValue',
+                num:newDa.partNum,
+                partPrice:newDa.partPrice,
+                PartName:newDa.platformFactPartName,
+                partManageFee:newDa.partManageFee
+            }
+        }
+        for(var i in pjArr){
+            AddUl(pjArr[i]);
+        }
+        $('#peijianDs .nav').html(am)
+    }
+</script>
+</html>
