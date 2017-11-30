@@ -322,7 +322,7 @@
                     break;
                 case 'bValue':
                     liDom.find('div').append('<span>'+arr[i].name+'</span>')
-                        .append('<span>'+arr[i].gz+'</span>')
+                        .append('<span>'+arr[i].gz || ''+'</span>')
                     break;
                 case 'pTitle':
                     liDom.find('div').append('<span>'+arr[i].name+'</span>')
