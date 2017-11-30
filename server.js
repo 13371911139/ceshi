@@ -9,9 +9,12 @@ var cookiePareser = require('cookie-parser')
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookiePareser());
 //app.use(express.bodyParser())
+
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/');
+
+
 app.use('/dist', express.static('dist'));
 app.use('/lexiugo', express.static('dist/lexiugo'));
 app.use('/server/dist', express.static('dist'));

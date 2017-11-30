@@ -8,7 +8,7 @@ var router = express.Router();
 //express body-parser swig iconv-lite bluebird request
 var projjj=true;
 
-//端访问
+//pc端访问
 router.use('/pc',require('./pc'));
 
 
