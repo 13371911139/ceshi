@@ -291,5 +291,7 @@ router.get('/down',(req,res,next)=>{
         'window.location.href='+vUrl+
         '</script>'
     );
+    console.log(vUrl);
+    res.end();
 })
 module.exports = router;
