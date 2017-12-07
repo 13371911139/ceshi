@@ -288,7 +288,7 @@ router.get('/down',(req,res,next)=>{
     }
     res.write(
         '<script>' +
-        'window.location.href='+vUrl+
+        'window.location.href="'+vUrl+'"'+
         '</script>'
     );
     console.log(vUrl);
