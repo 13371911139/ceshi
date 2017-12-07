@@ -15,6 +15,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/');
 
 
+
 app.use('/dist', express.static('dist'));
 app.use('/lexiugo', express.static('dist/lexiugo'));
 app.use('/server/dist', express.static('dist'));
