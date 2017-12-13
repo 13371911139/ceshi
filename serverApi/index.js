@@ -161,9 +161,7 @@ router.post('/BQXX',(req,res,next)=>{
         .accept('json')
         .send(data)
         .end((reqe,rese)=>{
-            console.log(rese,'url',urlse);
             res.json(rese.body)
-
         });
 
 
