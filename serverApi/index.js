@@ -140,8 +140,32 @@ router.get('/',(req,res,next)=>{
     }
     res.render('index',{dataList:dataList});
 });
+
+
 router.post('/BQXX',(req,res,next)=>{
-    console.log(req.body.data);
+    var keys=req.body.data.split("/")[1];
+    var dats=req.body.data.split("/").pop();
+    var arrs={
+        brand:{url:'queryBrand',keys:'brandId'},
+        family:{url:'queryFamily',keys:'brandId'},
+        group:{url:'queryGroup',keys:'familyId'},
+        vehicle:{url:'queryVehicle',keys:'groupId'}
+    }
+    var data={}
+    data[arrs[dats].keys]=dats
+    console.log(data,arrs[keys].url)
+    superagent
+        .post('/toumingxiu/brands'+arrs[keys].url)
+        .type('form')
+        .accept('json')
+        .send(data)
+        .end(function(reqe,rese){
+            console.log(rese.body);
+            res.json(rese.body)
+        });
+
+
+    /*console.log(req.body.data);
     var url="http://assess-api.lexiugo.com/assess-api/assess-api"+encodeURIComponent(req.body.data)+"?callback=__callback&userName=lexiugo&passwd=n27H3lNGL7wJSePFsrr0g16UTU0%2BtDfsGHMVZ2pmxsDaFV4cVSzVwQ%3D%3D&_=1510119995854"
     http.get(url,(r)=>{
         var html = '';
@@ -155,7 +179,7 @@ router.post('/BQXX',(req,res,next)=>{
         });
     }).on('error',()=>{
         console.log('获取数据错误');
-    });
+    });*/
 })
 
 router.get('/getMapList',(req,res,next)=>{
