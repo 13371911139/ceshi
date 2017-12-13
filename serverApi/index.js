@@ -146,10 +146,10 @@ router.post('/BQXX',(req,res,next)=>{
     var keys=req.body.data.split("/")[1];
     var dats=req.body.data.split("/").pop();
     var arrs={
-        brand:{url:'queryBrand',keys:'brandId'},
-        family:{url:'queryFamily',keys:'brandId'},
-        group:{url:'queryGroup',keys:'familyId'},
-        vehicle:{url:'queryVehicle',keys:'groupId'}
+        brand:{url:'queryBrandApp',keys:'brandId'},
+        family:{url:'queryFamilyApp',keys:'brandId'},
+        group:{url:'queryGroupApp',keys:'familyId'},
+        vehicle:{url:'queryVehicleApp',keys:'groupId'}
     }
     var data={}
     data[arrs[keys].keys]=dats
