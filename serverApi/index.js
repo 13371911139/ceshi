@@ -152,7 +152,7 @@ router.post('/BQXX',(req,res,next)=>{
         vehicle:{url:'queryVehicle',keys:'groupId'}
     }
     var data={}
-    data[arrs[keys]]=dats
+    data[arrs[keys].keys]=dats
     console.log(data,arrs[keys].url)
     superagent
         .post('/toumingxiu/brands'+arrs[keys].url)
