@@ -155,7 +155,7 @@ router.post('/BQXX',(req,res,next)=>{
     data[arrs[keys].keys]=dats
     console.log(data,arrs[keys].url)
     superagent
-        .post('http://localhost:8888/toumingxiu/brands'+arrs[keys].url)
+        .post('http://localhost:8888/toumingxiu/brands'+arrs[keys].url+'.do')
         .type('form')
         .accept('json')
         .send(data)
