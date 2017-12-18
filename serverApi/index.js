@@ -344,7 +344,11 @@ console.log(req.body.id)
                 data.isMe='';
             }
             var newJson=JSON.stringify(data);
-            pList[i].wsObj.send(newJson)
+            try{
+                pList[i].wsObj.send(newJson)
+            }catch (e){
+                delete pList[i];
+            }
         }
     }else{
         var newJson=JSON.stringify(data);
@@ -353,7 +357,7 @@ console.log(req.body.id)
         var newJson=JSON.stringify(data);
         pList[req.body.id].wsObj.send(newJson);
     }
-
+    res.end();
 })
 
 module.exports = router;
