@@ -319,4 +319,38 @@ router.get('/down',(req,res,next)=>{
 })
 
 /**聊天喽**/
+
+var wsse = new WebSocketServer({ port: 8182 }),pList={};
+wsse.on('connection', function (ws) {
+    console.log('client connected',sockets.length);
+    ws.on('message', function (message) {
+        var newMes=JSON.parse(message);
+        pList[newMes.id]={wsObj:ws,name:newMes.name,id:newMes.id};
+    });
+    ws.on('close',function(e){
+        console.log('关闭了'+e);
+    })
+});
+router.post('/callMe',(req,res,next)=>{
+    var data={id:req.body.id,massage:req.body.massage,name:pList[req.body.id].name};
+    if(!req.body.sendId){
+        for(var i in pList){
+            if(i==req.body.id){
+                data.isMe=true;
+            }else{
+                data.isMe='';
+            }
+            var newJson=JSON.stringify(data);
+            pList[i].wsObj.send(newJson)
+        }
+    }else{
+        var newJson=JSON.stringify(data);
+        pList[req.body.sendId].wsObj.send(newJson);
+        data.isMe=true;
+        var newJson=JSON.stringify(data);
+        pList[req.body.id].wsObj.send(newJson);
+    }
+
+})
+
 module.exports = router;
