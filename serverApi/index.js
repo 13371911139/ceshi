@@ -35,7 +35,6 @@ wss.on('connection', function (ws) {
         }
     });
     ws.on('close',function(e){
-
         console.log('关闭了'+e);
     })
 });
@@ -318,4 +317,6 @@ router.get('/down',(req,res,next)=>{
     console.log(vUrl);
     res.end();
 })
+
+/**聊天喽**/
 module.exports = router;
