@@ -325,7 +325,6 @@ wsse.on('connection', function (ws) {
     console.log('client connected',pList);
     ws.on('message', function (message) {
         var newMes=JSON.parse(message);
-        console.log(message)
         pList[newMes.id]={wsObj:ws,name:newMes.name,id:newMes.id};
     });
     ws.on('close',function(e){
@@ -333,11 +332,13 @@ wsse.on('connection', function (ws) {
     })
 });
 router.post('/callMe',(req,res,next)=>{
+    if(req.body.name){
+        pList[req.body.id].name=req.body.name
+    }
     var data={id:req.body.id,massage:req.body.massage,name:pList[req.body.id].name};
-console.log(req.body.id)
+
     if(!req.body.sendId){
         for(var i in pList){
-            console.log(pList[i])
             if(i==req.body.id){
                 data.isMe=true;
             }else{
