@@ -333,7 +333,7 @@ wsse.on('connection', function (ws) {
 });
 router.post('/callMe',(req,res,next)=>{
     if(req.body.name){
-        pList[req.body.id].name=req.body.name
+        pList[req.body.id].name=req.body.name+req.body.id
     }
     var data={id:req.body.id,massage:req.body.massage,name:pList[req.body.id].name};
 
