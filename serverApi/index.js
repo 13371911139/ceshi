@@ -334,8 +334,10 @@ wsse.on('connection', function (ws) {
 });
 router.post('/callMe',(req,res,next)=>{
     var data={id:req.body.id,massage:req.body.massage,name:pList[req.body.id].name};
+console.log(req.body.id)
     if(!req.body.sendId){
         for(var i in pList){
+            console.log(pList[i])
             if(i==req.body.id){
                 data.isMe=true;
             }else{
