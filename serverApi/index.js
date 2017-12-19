@@ -360,16 +360,14 @@ router.post('/callMe',(req,res,next)=>{
         if(pList[req.body.sendId]){
             var newJson=JSON.stringify(data);
             pList[req.body.sendId].wsObj.send(newJson);
-
             data.isMe=true;
             var newJson=JSON.stringify(data);
             pList[req.body.id].wsObj.send(newJson);
+            res.json({msg:'发送成功'})
         }else{
             res.json({msg:'对方已下线'})
         }
-
     }
-    res.json({msg:'发送成功'})
 })
 
 module.exports = router;
