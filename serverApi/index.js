@@ -327,6 +327,7 @@ wsse.on('connection',(ws)=>{
         var newMes=JSON.parse(message);
         pList[ws._ultron.id]={wsObj:ws,name:newMes.name,id:ws._ultron.id};
         var newSend={id:ws._ultron.id,type:'jd'}
+        console.log(newSend)
         var sendData=JSON.stringify(newSend);
         ws.send(sendData)
     });
