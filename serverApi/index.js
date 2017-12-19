@@ -356,10 +356,11 @@ router.post('/callMe',(req,res,next)=>{
             }
         }
     }else{
+        console.log(pList[req.body.sendId])
         if(pList[req.body.sendId]){
             var newJson=JSON.stringify(data);
             pList[req.body.sendId].wsObj.send(newJson);
-            console.log(pList[req.body.sendId])
+
             data.isMe=true;
             var newJson=JSON.stringify(data);
             pList[req.body.id].wsObj.send(newJson);
