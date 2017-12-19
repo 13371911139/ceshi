@@ -322,13 +322,16 @@ router.get('/down',(req,res,next)=>{
 
 var wsse = new WebSocketServer({ port: 8182 }),pList={};
 wsse.on('connection',(ws)=>{
-    console.log('client connected',ws._socket,ws._ultron.id);
+    console.log('client connected');
     ws.on('message',(message)=>{
         var newMes=JSON.parse(message);
-        pList[newMes.id]={wsObj:ws,name:newMes.name,id:newMes.id};
+        pList[ws._ultron.id]={wsObj:ws,name:newMes.name,id:ws._ultron.id};
+        var newSend={id:ws._ultron.id,type:'jd'}
+        var sendData=JSON.stringify(newSend);
+        ws.send(sendData)
     });
     ws.on('close',(e)=>{
-        console.log('ws',ws,ws.socket,ws._ultron);
+        delete pList[ws._ultron.id]
         console.log('关闭了'+e);
     })
 });
