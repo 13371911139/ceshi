@@ -356,14 +356,19 @@ router.post('/callMe',(req,res,next)=>{
             }
         }
     }else{
-        var newJson=JSON.stringify(data);
-        pList[req.body.sendId].wsObj.send(newJson);
-        console.log(pList[req.body.sendId])
-        data.isMe=true;
-        var newJson=JSON.stringify(data);
-        pList[req.body.id].wsObj.send(newJson);
+        if(pList[req.body.sendId]){
+            var newJson=JSON.stringify(data);
+            pList[req.body.sendId].wsObj.send(newJson);
+            console.log(pList[req.body.sendId])
+            data.isMe=true;
+            var newJson=JSON.stringify(data);
+            pList[req.body.id].wsObj.send(newJson);
+        }else{
+            res.json({msg:'对方已下线'})
+        }
+
     }
-    res.end();
+    res.json({msg:'发送成功'})
 })
 
 module.exports = router;
