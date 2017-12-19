@@ -328,7 +328,7 @@ wsse.on('connection',(ws)=>{
         pList[newMes.id]={wsObj:ws,name:newMes.name,id:newMes.id};
     });
     ws.on('close',(e)=>{
-        console.log('ws',ws);
+        console.log('ws',ws._ultron.id,ws.Ultron.id);
         console.log('关闭了'+e);
     })
 });
