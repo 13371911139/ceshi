@@ -322,7 +322,7 @@ router.get('/down',(req,res,next)=>{
 
 var wsse = new WebSocketServer({ port: 8182 }),pList={};
 wsse.on('connection',(ws)=>{
-    console.log('client connected',ws.id);
+    console.log('client connected',ws._socket,ws.Socket);
     ws.on('message',(message)=>{
         var newMes=JSON.parse(message);
         pList[newMes.id]={wsObj:ws,name:newMes.name,id:newMes.id};
