@@ -355,6 +355,7 @@ router.post('/callMe',(req,res,next)=>{
                 delete pList[i];
             }
         }
+        res.end()
     }else{
         console.log(pList[req.body.sendId])
         if(pList[req.body.sendId]){
