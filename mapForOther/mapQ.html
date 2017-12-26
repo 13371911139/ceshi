@@ -27,10 +27,7 @@
         var geocoder = new AMap.Geocoder({
             city: "021"//城市，默认：“全国”
         });
-        var marker = new AMap.Marker({
-            map:map,
-            bubble:true
-        })
+
         getAddress(geocoder)
     });
     function getAddress(geocoder) {
@@ -47,6 +44,10 @@
         })
     }
     function getIt(dat,geocoder){
+        var marker = new AMap.Marker({
+            map:map,
+            bubble:true
+        })
         geocoder.getLocation(dat.addr, function (status, result) {
             if (status == 'complete' && result.geocodes.length) {
                 marker.setPosition(result.geocodes[0].location);
