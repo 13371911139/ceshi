@@ -55,7 +55,7 @@
 
                 var ellipse = new AMap.Ellipse({
                     map: map, center: result.geocodes[0].location, radius: [ 5000, 5000 ],
-                    strokeOpacity:0, fillColor:'blue', fillOpacity:0.5, zIndex:10,
+                    strokeOpacity:0, fillColor:'red', fillOpacity:0.5, zIndex:10,
                     bubble:true, cursor:'pointer', bubble: false
                 })
                 AMap.event.addListener(ellipse, 'mouseover', function() {
