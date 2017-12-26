@@ -57,14 +57,19 @@
                     map: map, center: result.geocodes[0].location, radius: [ 5000, 5000 ], strokeOpacity:0, fillColor:'blue',
                     fillOpacity:0.5, zIndex:10, bubble:true, cursor:'pointer', bubble: false
                 })
-                var InfoWindow = new AMap.InfoWindow({
-                    isCustom: true,  //使用自定义窗体
-                    content: '<div>'+dat.name +'</div>',
-                    offset: new AMap.Pixel(0, 0)
+                AMap.event.addListener(marker, 'mouseover', function() {
+                    //GDMap.openInfoWindow(data,map);
+                    var InfoWindow = new AMap.InfoWindow({
+                        isCustom: true,  //使用自定义窗体
+                        content: '<div>'+dat.name +'</div>',
+                        offset: new AMap.Pixel(0, 0)
+                    });
+                    InfoWindow.open(
+                        map,result.geocodes[0].location
+                    )
                 });
-                InfoWindow.open(
-                    map,result.geocodes[0].location
-                )
+
+
                 /*map.setCenter(marker.getPosition())*/
                 console.log('成功')
             } else {
