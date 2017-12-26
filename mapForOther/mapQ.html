@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>热力图</title>
+    <title>椭圆</title>
     <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
-    <script src="http://webapi.amap.com/maps?v=1.4.1&key=bbbde4f59c905d99f53ba3126eb6cbab&plugin=AMap.EllipseEditor"></script>
+    <script src="http://webapi.amap.com/maps?v=1.4.2&key=您申请的key值&plugin=AMap.EllipseEditor"></script>
     <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
-    <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"> </script>
 </head>
 <body>
 <div id="container"></div>
@@ -24,7 +23,7 @@
     if (!isSupportCanvas()) {
         alert('热力图仅对支持canvas的浏览器适用,您所使用的浏览器不能使用热力图功能,请换个浏览器试试~')
     }
-    AMap.plugin('AMap.Geocoder,AMap.Ellipse',function(){
+    AMap.plugin('AMap.Geocoder',function(){
         var geocoder = new AMap.Geocoder({
             city: "021"//城市，默认：“全国”
         });
