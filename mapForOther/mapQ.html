@@ -57,7 +57,7 @@
                     map: map, center: result.geocodes[0].location, radius: [ 5000, 5000 ], strokeOpacity:0, fillColor:'blue',
                     fillOpacity:0.5, zIndex:10, bubble:true, cursor:'pointer', bubble: false
                 })
-                AMap.event.addListener(marker, 'mouseover', function() {
+                AMap.event.addListener(ellipse, 'mouseover', function() {
                     //GDMap.openInfoWindow(data,map);
                     var InfoWindow = new AMap.InfoWindow({
                         isCustom: true,  //使用自定义窗体
