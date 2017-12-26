@@ -195,6 +195,20 @@ router.get('/getMapList',(req,res,next)=>{
     sql.Connect(query)
 })
 
+router.get('/getXlcAddress',(req,res,next)=>{
+    var query = (connection)=> {
+        sql.query({
+            connection: connection,
+            sql: "SELECT * from ceshi_xlc_hotpoint",
+            success: (dats) => {
+                console.log(dats);
+                res.jsonp({data:dats})
+            }
+        })
+    }
+    sql.Connect(query)
+})
+
 router.post('/getCoupon',(req,res,next)=>{
     var code,msg;
     if(!req.body.ticketId){
