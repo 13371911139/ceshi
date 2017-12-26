@@ -24,7 +24,7 @@
     if (!isSupportCanvas()) {
         alert('热力图仅对支持canvas的浏览器适用,您所使用的浏览器不能使用热力图功能,请换个浏览器试试~')
     }
-    AMap.plugin('AMap.Geocoder',function(){
+    AMap.plugin('AMap.Geocoder,AMap.Ellipse',function(){
         var geocoder = new AMap.Geocoder({
             city: "021"//城市，默认：“全国”
         });
