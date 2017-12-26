@@ -19,7 +19,7 @@
     var map = new AMap.Map("container", {
         resizeEnable: true,
         center: [121.464404,31.229357],
-        zoom: 9
+        zoom: 11
     });
     if (!isSupportCanvas()) {
         alert('热力图仅对支持canvas的浏览器适用,您所使用的浏览器不能使用热力图功能,请换个浏览器试试~')
@@ -45,17 +45,18 @@
         })
     }
     function getIt(dat,geocoder){
-        var marker = new AMap.Marker({
+        /*var marker = new AMap.Marker({
             map:map,
             bubble:true
-        })
+        })*/
         geocoder.getLocation(dat.addr, function (status, result) {
             if (status == 'complete' && result.geocodes.length) {
-                marker.setPosition(result.geocodes[0].location);
+               // marker.setPosition(result.geocodes[0].location);
 
                 var ellipse = new AMap.Ellipse({
-                    map: map, center: result.geocodes[0].location, radius: [ 5000, 5000 ], strokeOpacity:0, fillColor:'blue',
-                    fillOpacity:0.5, zIndex:10, bubble:true, cursor:'pointer', bubble: false
+                    map: map, center: result.geocodes[0].location, radius: [ 5000, 5000 ],
+                    strokeOpacity:0, fillColor:'blue', fillOpacity:0.5, zIndex:10,
+                    bubble:true, cursor:'pointer', bubble: false
                 })
                 AMap.event.addListener(ellipse, 'mouseover', function() {
                     //GDMap.openInfoWindow(data,map);
