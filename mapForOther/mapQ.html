@@ -13,6 +13,7 @@
 <body>
 <div id="container"></div>
 <div class="button-group">
+    <input style="position:absolute;top:50px;right:30px;border:1px solid #ccc;height:40px;width:200px;z-index:199;" type="text" placeholder="请输入返回值按return/Enter 确认">
 </div>
 <script>
     var map = new AMap.Map("container", {
@@ -48,11 +49,16 @@
             map:map,
             bubble:true
         })
+        var ellipse = new AMap.Ellipse({
+            map: map, center: center, radius: [ 5000, 5000 ], strokeOpacity:0, fillColor:'blue',
+            fillOpacity:0.5, zIndex:10, bubble:true, cursor:'pointer', bubble: false
+        })
         geocoder.getLocation(dat.addr, function (status, result) {
             if (status == 'complete' && result.geocodes.length) {
                 marker.setPosition(result.geocodes[0].location);
-                map.setCenter(marker.getPosition())
-                alert('成功')
+                ellipse.setPosition(result.geocodes[0].location);
+                /*map.setCenter(marker.getPosition())*/
+                console.log('成功')
             } else {
                 console.log('失败',dat.addr)
             }
