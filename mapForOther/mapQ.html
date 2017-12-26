@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>热力图</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script src="http://webapi.amap.com/maps?v=1.4.1&key=bbbde4f59c905d99f53ba3126eb6cbab&callback"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"> </script>
+</head>
+<body>
+<div id="container"></div>
+<div class="button-group">
+</div>
+<script>
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [121.464404,31.229357],
+        zoom: 14
+    });
+    if (!isSupportCanvas()) {
+        alert('热力图仅对支持canvas的浏览器适用,您所使用的浏览器不能使用热力图功能,请换个浏览器试试~')
+    }
+    AMap.plugin('AMap.Geocoder',function(){
+        var geocoder = new AMap.Geocoder({
+            city: "021"//城市，默认：“全国”
+        });
+        var marker = new AMap.Marker({
+            map:map,
+            bubble:true
+        })
+        getAddress(geocoder)
+    });
+    function getAddress(geocoder) {
+        $.ajax({
+            url: 'http://beidouchaxun.cn/server/getXlcAddress',
+            type: 'get',
+            dataType: "jsonp",
+            success: function (dat) {
+                console.log(dat)
+                for(var i in dat.data){
+                    getIt(dat.data[i],geocoder)
+                }
+            }
+        })
+    }
+    function getIt(dat,geocoder){
+        geocoder.getLocation(dat.addr, function (status, result) {
+            if (status == 'complete' && result.geocodes.length) {
+                marker.setPosition(result.geocodes[0].location);
+                map.setCenter(marker.getPosition())
+                alert('成功')
+            } else {
+                console.log('失败',dat.addr)
+            }
+        })
+    }
+    //判断浏览区是否支持canvas
+    function isSupportCanvas() {
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }
+</script>
+</body>
+</html>

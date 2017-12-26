@@ -194,7 +194,9 @@ router.get('/getMapList',(req,res,next)=>{
     }
     sql.Connect(query)
 })
-
+router.get('/getQmap',(req,res,next)=>{
+    res.render('./mapForOther/mapQ.html',{dataList:req.body});
+})
 router.get('/getXlcAddress',(req,res,next)=>{
     var query = (connection)=> {
         sql.query({
