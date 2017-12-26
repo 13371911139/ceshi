@@ -63,7 +63,8 @@
                     var InfoWindow = new AMap.InfoWindow({
                         isCustom: true,  //使用自定义窗体
                         content: '<div>'+dat.name +'</div>',
-                        offset: new AMap.Pixel(0, 0)
+                        offset: new AMap.Pixel(0, 0),
+                        zIndex:999
                     });
                     InfoWindow.open(
                         map,result.geocodes[0].location
