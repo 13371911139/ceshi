@@ -416,11 +416,11 @@ router.get('/fonts',(req,res,next)=>{
             style:"<style id='mdbsc' onload=(function(){$('.mdbsc').remove();$('#mdbsc').addClass('mdbsc')})()>" +
             '@font-face{' +
             '    font-family:PingFangSCLight;' +
-            '    src: url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
-            '    src: url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */' +
-            '    url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.woff") format("woff"), /* chrome, firefox */' +
-            '    url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */\n' +
-            '    url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.svg#PingFang SC Light") format("svg"); /* iOS 4.1- */' +
+            '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
+            '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */' +
+            '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.woff") format("woff"), /* chrome, firefox */' +
+            '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */\n' +
+            '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.svg#PingFang SC Light") format("svg"); /* iOS 4.1- */' +
             '    font-style: normal;' +
             '    font-weight: normal;' +
             '}' +
