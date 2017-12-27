@@ -413,9 +413,11 @@ router.get('/fonts',(req,res,next)=>{
             console.error(err);
         }
         res.json({
-            style:"<style id='mdbsc' onload=(function(){$('.mdbsc').remove();$('#mdbsc').addClass('mdbsc')})()>" +
+            style:"<style id='mdbsc' onload=(function(){" +
+            "alert();document.getElementById('appWrapper').style.fontFamily='font-family:PingFangSCLight"+nowTime+"';" +
+            "})()>" +
             '@font-face{' +
-            '    font-family:PingFangSCLight;' +
+            '    font-family:PingFangSCLight'+nowTime+';' +
             '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
             '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */' +
             '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.woff") format("woff"), /* chrome, firefox */' +
