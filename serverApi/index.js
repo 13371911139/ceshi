@@ -388,4 +388,47 @@ router.post('/callMe',(req,res,next)=>{
     }
 })
 
+//**字体**//
+var Fontmin = require('fontmin');
+router.get('/fonts',(req,res,next)=>{
+    var nowTime=Date.now();
+    var srcPath = '/usr/local/server/ceshi/common/fonts/'+req.query.fontStyle+'.ttf'; // 字体源文件
+    var destPath = '/usr/local/server/ceshi/common/fonts/'+nowTime;    // 输出路径
+    var fontmin=new Fontmin()
+        .src(srcPath)               // 输入配置
+        .use(Fontmin.glyph({        // 字型提取插件
+            text: req.query.data.replace(/\s+/g,"")             // 所需文字
+        }))
+        .use(Fontmin.ttf2eot())     // eot 转换插件
+        .use(Fontmin.ttf2woff())    // woff 转换插件
+        .use(Fontmin.ttf2svg())     // svg 转换插件
+        .use(Fontmin.css())         // css 生成插件
+        .dest(destPath);
+
+    // 执行
+    fontmin.run(function (err, files, stream) {
+        console.log(req.query.data )
+        if (err) {                  // 异常捕捉
+            console.error(err);
+        }
+        res.json({
+            style:"<style id='mdbsc' onload=(function(){$('.mdbsc').remove();$('#mdbsc').addClass('mdbsc')})()>" +
+            '@font-face{' +
+            '    font-family:PingFangSCLight;' +
+            '    src: url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
+            '    src: url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */' +
+            '    url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.woff") format("woff"), /* chrome, firefox */' +
+            '    url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */\n' +
+            '    url("http://localhost:8099/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.svg#PingFang SC Light") format("svg"); /* iOS 4.1- */' +
+            '    font-style: normal;' +
+            '    font-weight: normal;' +
+            '}' +
+            '</style>',
+            fun:'function(){console.log(88888)}',
+            news:'bigG偶氮sdfklajsdlgjasldjflasjdfl'
+        })
+        console.log('done');        // 成功
+    });
+})
+
 module.exports = router;

@@ -21,6 +21,7 @@ app.use('/lexiugo', express.static('dist/lexiugo'));
 app.use('/server/dist', express.static('dist'));
 app.use('/server/lexiugo', express.static('dist/server/lexiugo'));
 app.use('/server', express.static('dist'));
+app.use('/server/fonts', express.static('common/fonts'));
 
 if(process.env.NODE_ENV ==='dev'){
     global.ripath='/dist/';
