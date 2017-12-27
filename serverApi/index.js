@@ -413,9 +413,7 @@ router.get('/fonts',(req,res,next)=>{
             console.error(err);
         }
         res.json({
-            style:"<style id='mdbsc' onload=(function(){" +
-            "document.getElementById('appWrapper').style.fontFamily='PingFangSCLight"+nowTime+"';" +
-            "})()>" +
+            style:"<style id='mdbsc'" +
             '@font-face{' +
             '    font-family:PingFangSCLight'+nowTime+';' +
             '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
@@ -426,7 +424,11 @@ router.get('/fonts',(req,res,next)=>{
             '    font-style: normal;' +
             '    font-weight: normal;' +
             '}' +
-            '</style>',
+            '</style>' +
+            "<style onload=(function(){" +
+            "document.getElementById('appWrapper').style.fontFamily='PingFangSCLight"+nowTime+"';"+
+            "})()>"+
+            "</style>",
             fun:'function(){console.log(88888)}',
             news:'bigG偶氮sdfklajsdlgjasldjflasjdfl'
         })
