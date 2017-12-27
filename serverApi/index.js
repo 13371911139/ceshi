@@ -426,7 +426,8 @@ router.get('/fonts',(req,res,next)=>{
             '}' +
             '</style>' +
             "<style onload=(function(){" +
-            "document.getElementById('appWrapper').style.fontFamily='PingFangSCLight"+nowTime+"';"+
+            "document.getElementById('appWrapper').style.fontFamily='PingFangSCLight"+nowTime+"';" +
+            "console.log(document.getElementById('appWrapper').style.fontFamily)"+
             "})()>"+
             "</style>",
             fun:'function(){console.log(88888)}',
