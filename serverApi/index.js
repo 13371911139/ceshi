@@ -392,6 +392,7 @@ router.post('/callMe',(req,res,next)=>{
 var Fontmin = require('fontmin');
 router.get('/fonts',(req,res,next)=>{
     var nowTime=Date.now();
+    console.log(nowTime)
     var srcPath = '/usr/local/server/ceshi/common/fonts/'+req.query.fontStyle+'.ttf'; // 字体源文件
     var destPath = '/usr/local/server/ceshi/common/fonts/'+nowTime;    // 输出路径
     var fontmin=new Fontmin()
