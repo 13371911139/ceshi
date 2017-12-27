@@ -414,7 +414,7 @@ router.get('/fonts',(req,res,next)=>{
         }
         res.json({
             style:"<style id='mdbsc' onload=(function(){" +
-            "document.getElementById('appWrapper').style.fontFamily='font-family:PingFangSCLight"+nowTime+"';" +
+            "document.getElementById('appWrapper').style.fontFamily='PingFangSCLight"+nowTime+"';" +
             "})()>" +
             '@font-face{' +
             '    font-family:PingFangSCLight'+nowTime+';' +
