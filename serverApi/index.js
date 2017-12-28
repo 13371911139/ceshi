@@ -434,7 +434,7 @@ router.get('/fonts',(req,res,next)=>{
 var schedule = require("node-schedule");
 var rule3     = new schedule.RecurrenceRule();
 var times3    = [1,5,9,13,17,21];
-rule3.hour  = times3; rule1.minute = 0;
+rule3.hour  = times3;
 var j = schedule.scheduleJob(rule3, ()=>{
     var nowTime=Date.now();
     var newpath='/usr/local/server/ceshi/common/fonts'
