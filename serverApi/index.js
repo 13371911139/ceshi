@@ -435,7 +435,7 @@ var times3    = [1,5,9,13,17,21];
 rule3.hour  = times3; rule1.minute = 0;
 var j = schedule.scheduleJob(rule3, ()=>{
     var nowTime=Date.now();
-    var newpath='/Users/feiqu/Desktop/leXiu/common/fonts'
+    var newpath='/usr/local/server/ceshi/common/fonts'
     var files = fs.readdirSync(newpath);
     files.forEach((file,index)=>{
         console.log(nowTime-file)
