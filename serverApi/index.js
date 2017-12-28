@@ -392,7 +392,6 @@ router.post('/callMe',(req,res,next)=>{
 var Fontmin = require('fontmin');
 router.get('/fonts',(req,res,next)=>{
     var nowTime=Date.now();
-    console.log(nowTime)
     var srcPath = '/usr/local/server/ceshi/common/fonts/'+req.query.fontStyle+'.ttf'; // 字体源文件
     var destPath = '/usr/local/server/ceshi/common/fonts/'+nowTime;    // 输出路径
     var fontmin=new Fontmin()
@@ -405,7 +404,6 @@ router.get('/fonts',(req,res,next)=>{
         .use(Fontmin.ttf2svg())     // svg 转换插件
         .use(Fontmin.css())         // css 生成插件
         .dest(destPath);
-
     // 执行
     fontmin.run(function (err, files, stream) {
         console.log(req.query.data )
@@ -415,7 +413,7 @@ router.get('/fonts',(req,res,next)=>{
         res.json({
             style:"<style id='mdbsc'" +
             '@font-face{' +
-            '    font-family:PingFangSCLight'+nowTime+';' +
+            '    font-family:'+req.query.fontStyle+nowTime+';' +
             '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
             '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */' +
             '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.woff") format("woff"), /* chrome, firefox */' +
@@ -425,12 +423,40 @@ router.get('/fonts',(req,res,next)=>{
             '    font-weight: normal;' +
             '}' +
             '</style>',
-            fontFamily:'PingFangSCLight'+nowTime,
-            fun:'function(){console.log(88888)}',
-            news:'bigG偶氮sdfklajsdlgjasldjflasjdfl'
+            fontFamily:req.query.fontStyle+nowTime,
         })
         console.log('done');        // 成功
     });
 })
+/**定时任务 4小时**/
+var schedule = require("node-schedule");
+var rule3     = new schedule.RecurrenceRule();
+var times3    = [1,5,9,13,17,21];
+rule3.hour  = times3; rule1.minute = 0;
+var j = schedule.scheduleJob(rule3, ()=>{
+    var nowTime=Date.now();
+    var newpath='/Users/feiqu/Desktop/leXiu/common/fonts'
+    var files = fs.readdirSync(newpath);
+    files.forEach((file,index)=>{
+        console.log(nowTime-file)
+        try{
+            if(nowTime-file>=3600000){
+                var newFiles = fs.readdirSync(newpath+'/'+file);
+                newFiles.forEach((files,index)=>{
+                    var curPath = newpath+'/'+file + "/" + files;
+                    if(fs.statSync(curPath).isDirectory()) { // recurse
+                        deleteFolderRecursive(curPath);
+                    } else { // delete file
+                        fs.unlinkSync(curPath);
+                    }
+                })
+                fs.rmdirSync(newpath+'/'+file);
+            }
+        }catch (e){
+
+        }
+    })
+});
+
 
 module.exports = router;
