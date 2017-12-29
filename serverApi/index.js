@@ -412,15 +412,16 @@ router.get('/fonts',(req,res,next)=>{
         if (err) {                  // 异常捕捉
             console.error(err);
         }
+        var pathse="/server/fonts/"+nowTime+"/"+req.query.fontStyle
         res.json({
             style:"<style id='mdbsc'" +
             '@font-face{' +
-            '    font-family:'+req.query.fontStyle+nowTime+';' +
-            '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot"); /* IE9 */' +
-            '    src: url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */' +
-            '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.woff") format("woff"), /* chrome, firefox */' +
-            '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */\n' +
-            '    url("/server/fonts/'+nowTime+'/'+req.query.fontStyle+'.svg#PingFang SC Light") format("svg"); /* iOS 4.1- */' +
+            '    font-family:PingFangSCLight'+nowTime+';' +
+            '    src: url('+pathse+'.eot);' +
+            '    src: url('+pathse+'.eot?#iefix) format(embedded-opentype),' +
+            '    url('+pathse+'.woff) format(woff),' +
+            '    url('+pathse+'.ttf) format(truetype),' +
+            '    url('+pathse+'.svg#PingFang SC Light) format(svg);' +
             '    font-style: normal;' +
             '    font-weight: normal;' +
             '}' +
