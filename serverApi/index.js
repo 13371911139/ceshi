@@ -412,20 +412,9 @@ router.get('/fonts',(req,res,next)=>{
         if (err) {                  // 异常捕捉
             console.error(err);
         }
-        var pathse="/server/fonts/"+nowTime+"/"+req.query.fontStyle
         res.json({
-            style:"<style id='mdbsc'" +
-            '@font-face{' +
-            '    font-family:PingFangSCLight'+nowTime+';' +
-            '    src: url('+pathse+'.eot);' +
-            '    src: url('+pathse+'.eot?#iefix) format(embedded-opentype),' +
-            '    url('+pathse+'.woff) format(woff),' +
-            '    url('+pathse+'.ttf) format(truetype),' +
-            '    url('+pathse+'.svg#PingFang SC Light) format(svg);' +
-            '    font-style: normal;' +
-            '    font-weight: normal;' +
-            '}' +
-            '</style>',
+            path:nowTime,
+            font:req.query.fontStyle,
             fontFamily:req.query.fontStyle+nowTime,
         })
         console.log('done');        // 成功
