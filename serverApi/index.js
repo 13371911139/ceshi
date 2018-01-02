@@ -458,6 +458,7 @@ router.get('/toweixin',(req,res,next)=>{
         '<script>location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b3cc819d682ce0e&redirect_uri=http://www.beidouchaxun.cn/server?action=newBuild&response_type=code&scope=snsapi_base&state=1&connect_redirect=1"</script>' +
         '' +
         '')
+    res.end();
 })
 
 module.exports = router;
