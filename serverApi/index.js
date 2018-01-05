@@ -467,7 +467,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
     '<section id="appWrapper"></section>' +
     '<input type="hidden" id="xlcRepairLevelNode" value="'+req.body.xlcRepairLevel+'">' +
     '<input type="hidden" id="brandCodeNode" value="'+req.body.brandCode+'">' +
-    '<script src="../../server/dist/pcSelectMap.js"></script></div>' +
+    '<script src="http://116.62.162.134:8090/server/dist/pcSelectMap.js"></script></div>' +
     ''})
 })
 module.exports = router;
