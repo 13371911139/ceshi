@@ -463,11 +463,10 @@ router.get('/toweixin',(req,res,next)=>{
 })
 
 router.post('/pcMapXlc',(req,res,next)=>{
-    res.json({htmls:'<div id="mapSelectBox" style="position:fixed;top:0px;left:0px;z-index:9999;width:100%;height:100vh;">' +
-    '<section id="appWrappers"></section>' +
+    res.json({htmls: '<section id="appWrappers"></section>' +
     '<input type="hidden" id="xlcRepairLevelNode" value="'+req.body.xlcRepairLevel+'">' +
     '<input type="hidden" id="brandCodeNode" value="'+req.body.brandCode+'">' +
-    '<script src="http://116.62.162.134:8090/server/dist/pcSelectMap.js"></script></div>' +
+    '<script src="http://116.62.162.134:8090/server/dist/pcSelectMap.js"></script>' +
     ''})
 })
 module.exports = router;
