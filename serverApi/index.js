@@ -478,10 +478,12 @@ router.post('/pcMapXlc',(req,res,next)=>{
    'var xlcRepairLevelNode =document.createElement("input");' +
    'xlcRepairLevelNode.id="xlcRepairLevelNode";' +
     'xlcRepairLevelNode.value="'+req.body.xlcRepairLevel+'";' +
+   'xlcRepairLevelNode.type="hidden";' +
 
     'var brandCodeNode =document.createElement("input");' +
    'brandCodeNode.id="brandCodeNode";' +
     'brandCodeNode.value="'+req.body.brandCode+'";' +
+   'brandCodeNode.type="hidden";' +
 
    'console.log(appWrappersNOdeDom,xlcRepairLevelNode,brandCodeNode);' +
    ' newReactDivDom.appendChild(appWrappersNOdeDom);' +
