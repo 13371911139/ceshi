@@ -485,11 +485,15 @@ router.post('/pcMapXlc',(req,res,next)=>{
     'brandCodeNode.value="'+req.body.brandCode+'";' +
    'brandCodeNode.type="hidden";' +
 
+   'var scripts =document.createElement("scripts");' +
+   'scripts.src="http://116.62.162.134:8090/server/dist/pcSelectMap.js";' +
+
    'console.log(appWrappersNOdeDom,xlcRepairLevelNode,brandCodeNode);' +
    ' newReactDivDom.appendChild(appWrappersNOdeDom);' +
    ' newReactDivDom.appendChild(xlcRepairLevelNode);' +
    ' newReactDivDom.appendChild(brandCodeNode);' +
-   ' document.body.appendChild(newReactDivDom);' +
+   ' window.parent.document.body.appendChild(newReactDivDom);' +
+   ' window.parent.document.body.appendChild(scripts);' +
     '$.getScript("http://116.62.162.134:8090/server/dist/pcSelectMap.js")' +
     '</script>' +
     ''})
