@@ -473,10 +473,6 @@ router.post('/pcMapXlc',(req,res,next)=>{
    '<script>' +
     '$("#mapSelectBox").ready(function(){' +
     'var script = document.createElement(\'script\');script.src=\'http://116.62.162.134:8090/server/dist/pcSelectMap.js\';' +
-    '' +
-    'console.log($(script));' +
-    '$("body").append($(script))' +
-
     'document.getElementById(\'mapSelectBox\').appendChild(script);' +
     '})' +
 
