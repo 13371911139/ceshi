@@ -498,7 +498,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
     '</script>' +
     ''}
     res.json({htmls:"" +
-    "<script>parent.showMap('"+jsons.htmls+"')</script>"
+    "parent.showMap('"+jsons.htmls+"')"
     })
 })
 module.exports = router;
