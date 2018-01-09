@@ -468,20 +468,28 @@ router.post('/pcMapXlc',(req,res,next)=>{
     res.json({htmls:
    '<script>' +
     'console.log(document.getElementById("appWrappers"));' +
-    'var newReactDivDom=document.createElement("div").id="mapSelectBox";' +
+    'var newReactDivDom=document.createElement("div");' +
+   'newReactDivDom.id="mapSelectBox";' +
     'newReactDivDom.style="position:fixed;top:0px;left:0px;z-index:9999;width:100%;height:100vh;";' +
-    'var appWrappersNOdeDom=document.createElement("section").id="appWrappers";' +
-    'var xlcRepairLevelNode =document.createElement("input").id="xlcRepairLevelNode";' +
+
+   'var appWrappersNOdeDom=document.createElement("section");' +
+   'appWrappersNOdeDom.id="appWrappers";' +
+
+   'var xlcRepairLevelNode =document.createElement("input");' +
+   'xlcRepairLevelNode.id="xlcRepairLevelNode";' +
     'xlcRepairLevelNode.value="'+req.body.xlcRepairLevel+'";' +
-    'var brandCodeNode =document.createElement("input").id="brandCodeNode";' +
+
+    'var brandCodeNode =document.createElement("input");' +
+   'brandCodeNode.id="brandCodeNode";' +
     'brandCodeNode.value="'+req.body.brandCode+'";' +
+
    'console.log(appWrappersNOdeDom,xlcRepairLevelNode,brandCodeNode);' +
-   ' document.body.appendChild(appWrappersNOdeDom);' +
-   ' document.body.appendChild(xlcRepairLevelNode);' +
-   ' document.body.appendChild(brandCodeNode);' +
+   ' newReactDivDom.appendChild(appWrappersNOdeDom);' +
+   ' newReactDivDom.appendChild(xlcRepairLevelNode);' +
+   ' newReactDivDom.appendChild(brandCodeNode);' +
+   ' document.body.appendChild(newReactDivDom);' +
     '$.getScript("http://116.62.162.134:8090/server/dist/pcSelectMap.js")' +
     '</script>' +
-
     ''})
 })
 module.exports = router;
