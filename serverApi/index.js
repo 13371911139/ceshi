@@ -467,8 +467,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
     '<section id="appWrappers"></section>' +
     '<input type="hidden" id="xlcRepairLevelNode" value="'+req.body.xlcRepairLevel+'">' +
     '<input type="hidden" id="brandCodeNode" value="'+req.body.brandCode+'">' +
-    '<script id="jbmtcbd"></script>' +
-    '<script >$("#jbmtcbd").load(function(){$("#jbmtcbd").attr("src","http://116.62.162.134:8090/server/dist/pcSelectMap.js")}</script>' +
+    '<script src="http://116.62.162.134:8090/server/dist/pcSelectMap.js"></script>' +
     '</div>' +
     ''})
 })
