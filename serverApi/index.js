@@ -465,7 +465,7 @@ router.get('/toweixin',(req,res,next)=>{
 script.src = "**URL**";(此处略去详细URL内容）
 document.getElementById("mapSelectBox").appendChild(script);*/
 router.post('/pcMapXlc',(req,res,next)=>{
-    res.json({htmls:
+    var jsons={htmls:
    '<script>' +
     'console.log(document.getElementById("appWrappers"));' +
     'var newReactDivDom=document.createElement("div");' +
@@ -492,10 +492,13 @@ router.post('/pcMapXlc',(req,res,next)=>{
    ' newReactDivDom.appendChild(appWrappersNOdeDom);' +
    ' newReactDivDom.appendChild(xlcRepairLevelNode);' +
    ' newReactDivDom.appendChild(brandCodeNode);' +
-   ' window.parent.document.body.appendChild(newReactDivDom);' +
-   ' window.parent.document.body.appendChild(scripts);' +
+   ' document.body.appendChild(newReactDivDom);' +
+   ' document.body.appendChild(scripts);' +
     //'$.getScript("http://116.62.162.134:8090/server/dist/pcSelectMap.js")' +
     '</script>' +
-    ''})
+    ''}
+    res.json({htmls:"" +
+    "<script>parent.showMap('"+jsons.htmls+"')</script>"
+    })
 })
 module.exports = router;
