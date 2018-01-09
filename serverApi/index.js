@@ -475,6 +475,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
     'xlcRepairLevelNode.value="'+req.body.xlcRepairLevel+'";' +
     'var brandCodeNode =document.createElement("input").id="brandCodeNode";' +
     'brandCodeNode.value="'+req.body.brandCode+'";' +
+   'console.log(appWrappersNOdeDom,xlcRepairLevelNode,brandCodeNode);' +
    ' document.body.appendChild(appWrappersNOdeDom);' +
    ' document.body.appendChild(xlcRepairLevelNode);' +
    ' document.body.appendChild(brandCodeNode);' +
