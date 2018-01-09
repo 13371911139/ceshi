@@ -470,7 +470,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
     '<input type="hidden" id="xlcRepairLevelNode" value="'+req.body.xlcRepairLevel+'">' +
     '<input type="hidden" id="brandCodeNode" value="'+req.body.brandCode+'">' +
     '</div>' +
-    '<script src="http://116.62.162.134:8090/server/dist/pcSelectMap.js"></script>' +
+   // '<script src="http://116.62.162.134:8090/server/dist/pcSelectMap.js"></script>' +
     '<script >console.log($("#appWrappers"))</script>' +
     ''})
 })
