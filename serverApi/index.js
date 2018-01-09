@@ -471,7 +471,10 @@ router.post('/pcMapXlc',(req,res,next)=>{
     '<input type="hidden" id="brandCodeNode" value="'+req.body.brandCode+'">' +
     '</div>' +
    '<script>' +
-    'var script = document.createElement(\'script\');script.src=\'http://116.62.162.134:8090/server/dist/pcSelectMap.js\';document.getElementById(\'mapSelectBox\').appendChild(script);' +
+    'var script = document.createElement(\'script\');' +
+    'script.src=\'http://116.62.162.134:8090/server/dist/pcSelectMap.js\';' +
+    'console.log($(\'#appWrappers\'))' +
+    '$(\'body\').append(script);' +
     '</script>' +
 
     ''})
