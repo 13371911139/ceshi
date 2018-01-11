@@ -497,7 +497,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
     'var scriptBox =window.parent.document.createElement("script");'+
 
 
-   ' document.body.appendChild(scripts);' +
+   ' window.parent.document.body.appendChild(scripts);' +
     //'$.getScript("http://116.62.162.134:8090/server/dist/pcSelectMap.js")' +
 
     '</script>'}
