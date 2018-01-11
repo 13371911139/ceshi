@@ -466,7 +466,6 @@ script.src = "**URL**";(此处略去详细URL内容）
 document.getElementById("mapSelectBox").appendChild(script);*/
 router.post('/pcMapXlc',(req,res,next)=>{
     var jsons={htmls:
-    '<script>'+
     'console.log(document.getElementById("appWrappers"));' +
     'var newReactDivDom=window.parent.document.createElement("div");' +
    'newReactDivDom.id="mapSelectBox";' +
@@ -497,12 +496,16 @@ router.post('/pcMapXlc',(req,res,next)=>{
     'var scriptBox =window.parent.document.createElement("script");'+
 
 
-   ' window.parent.document.body.appendChild(scripts);' +
+   ' window.parent.document.body.appendChild(scripts);'
     //'$.getScript("http://116.62.162.134:8090/server/dist/pcSelectMap.js")' +
-
-    '</script>'}
+    }
     res.json({htmls:"" +
-    "parent.showMap('"+jsons.htmls+"')"
+    "<div id='mapSelectBox' style='position:fixed;top:0px;left:0px;z-index:9999;width:100%;height:100vh;'>" +
+    "<section id='appWrappers'></section>" +
+    "<input type='hidden' id='xlcRepairLevelNode' value='"+req.body.xlcRepairLevel+"'>" +
+    "<input type='hidden' id='brandCodeNode' value='"+req.body.brandCode+"'>" +
+    "<script src='http://116.62.162.134:8090/server/dist/pcSelectMap.js'></script>" +
+    "</div>"
     })
 })
 module.exports = router;
