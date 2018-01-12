@@ -509,4 +509,8 @@ router.post('/pcMapXlc',(req,res,next)=>{
         "</div>"
         })
     })
+router.post('/U',(req,res,next)=>{
+    res.write('<h4>你好</h4>')
+    res.end();
+})
 module.exports = router;
