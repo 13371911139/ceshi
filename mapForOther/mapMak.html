@@ -33,7 +33,7 @@
     });
     function getAddress(geocoder) {
         $.ajax({
-            url: 'http://beidouchaxun.cn/server/getXlcAddress',
+            url: '/server/getXlcAddress',
             type: 'get',
             dataType: "jsonp",
             success: function (dat) {
@@ -53,7 +53,6 @@
                     map: map,
                     position:result.geocodes[0].location, //基点位置
                     offset: new AMap.Pixel(0,0), //相对于基点的偏移位置
-                    content:GDMap.lStyle(i),
                     draggable: false,  //是否可拖动
                     index:0
                     //content: '<div class="marker-route marker-marker-bus-from">111</div>'   //自定义点标记覆盖物内容
