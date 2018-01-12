@@ -45,19 +45,19 @@
         })
     }
     function getIt(dat,geocoder){
-        /*var marker = new AMap.Marker({
-            map:map,
-            bubble:true
-        })*/
         geocoder.getLocation(dat.addr, function (status, result) {
             if (status == 'complete' && result.geocodes.length) {
                // marker.setPosition(result.geocodes[0].location);
 
-                var ellipse = new AMap.Ellipse({
-                    map: map, center: result.geocodes[0].location, radius: [ 5000, 5000 ],
-                    strokeOpacity:0, fillColor:'red', fillOpacity:0.5, zIndex:10,
-                    bubble:true, cursor:'pointer', bubble: false
-                })
+                var marker = new AMap.Marker({ //添加自定义点标记
+                    map: map,
+                    position:result.geocodes[0].location, //基点位置
+                    offset: new AMap.Pixel(0,0), //相对于基点的偏移位置
+                    content:GDMap.lStyle(i),
+                    draggable: false,  //是否可拖动
+                    index:0
+                    //content: '<div class="marker-route marker-marker-bus-from">111</div>'   //自定义点标记覆盖物内容
+                });
                 AMap.event.addListener(ellipse, 'mouseover', function() {
                     //GDMap.openInfoWindow(data,map);
                     var InfoWindow = new AMap.InfoWindow({
