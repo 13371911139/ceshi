@@ -509,8 +509,11 @@ router.post('/pcMapXlc',(req,res,next)=>{
         "</div>"
         })
     })
-router.use('/U',(req,res,next)=>{
-    res.write('<h4>nihaonihaonihaonihaonihaonihaonihaonihaonihaonihao</h4>')
-    res.end();
+router.use('/U/:id',(req,res,next)=>{
+    var dataList={
+        path:ripath+('repairPlant'),
+        title:'修理厂信息'
+    }
+    res.render('index',{dataList:dataList});
 })
 module.exports = router;
