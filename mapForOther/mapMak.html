@@ -54,10 +54,11 @@
                     position:result.geocodes[0].location, //基点位置
                     offset: new AMap.Pixel(0,0), //相对于基点的偏移位置
                     draggable: false,  //是否可拖动
-                    index:0
+                    index:1
                     //content: '<div class="marker-route marker-marker-bus-from">111</div>'   //自定义点标记覆盖物内容
                 });
-                AMap.event.addListener(ellipse, 'mouseover', function() {
+
+                AMap.event.addListener(marker, 'mouseover', function() {
                     //GDMap.openInfoWindow(data,map);
                     var InfoWindow = new AMap.InfoWindow({
                         isCustom: true,  //使用自定义窗体
