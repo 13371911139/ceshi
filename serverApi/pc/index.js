@@ -10,6 +10,6 @@ router.use('/peijianDS',(req,res,next)=>{
 });
 
 router.use('/mapMak',(req,res,next)=>{
-    res.render('./pc/mapForOther/mapMak',{dataList:req.body});
+    res.render('./mapForOther/mapMak',{dataList:req.body});
 })
 module.exports = router;
