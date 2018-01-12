@@ -392,14 +392,16 @@ router.post('/callMe',(req,res,next)=>{
 
 //**字体**//
 var Fontmin = require('fontmin');
-router.get('/fonts',(req,res,next)=>{
+router.post('/fonts',(req,res,next)=>{
+    var textData=req.query.data || req.body.data;
+    var fontStyle=req.query.fontStyle || req.body.fontStyle
     var nowTime=Date.now();
-    var srcPath = '/usr/local/server/ceshi/common/fonts/'+req.query.fontStyle+'.ttf'; // 字体源文件
+    var srcPath = '/usr/local/server/ceshi/common/fonts/'+fontStyle+'.ttf'; // 字体源文件
     var destPath = '/usr/local/server/ceshi/common/fonts/'+nowTime;    // 输出路径
     var fontmin=new Fontmin()
         .src(srcPath)               // 输入配置
         .use(Fontmin.glyph({        // 字型提取插件
-            text: req.query.data.replace(/\s+/g,"")             // 所需文字
+            text: textData.replace(/\s+/g,"")             // 所需文字
         }))
         .use(Fontmin.ttf2eot())     // eot 转换插件
         .use(Fontmin.ttf2woff())    // woff 转换插件
@@ -408,14 +410,14 @@ router.get('/fonts',(req,res,next)=>{
         .dest(destPath);
     // 执行
     fontmin.run(function (err, files, stream) {
-        console.log(req.query.data )
+        console.log(textData )
         if (err) {                  // 异常捕捉
             console.error(err);
         }
         res.json({
             path:nowTime,
-            font:req.query.fontStyle,
-            fontFamily:req.query.fontStyle+nowTime,
+            font:fontStyle,
+            fontFamily:fontStyle+nowTime,
         })
         console.log('done');        // 成功
     });
