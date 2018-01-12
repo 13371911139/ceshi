@@ -16,7 +16,7 @@ router.use('/pc',require('./pc'));
 
 /*ws*/
 var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({ port: 8181 });
+    wss = new WebSocketServer({ port: 8185 });
 var sockets = {};
 global.APPID='wx4b3cc819d682ce0e';
 global.APPSECRET='07826b26a4f149ccfacba09426fa980c'
