@@ -512,6 +512,7 @@ router.post('/pcMapXlc',(req,res,next)=>{
         })
     })
 router.use('/U/:id',(req,res,next)=>{
+    var nowTime=Date.parse( new Date());
     if(!tokenData.time || (nowTime-tokenData.time)>=7000000){
         wxApi.getToken((rest)=>{
             if(rest.access_token){
