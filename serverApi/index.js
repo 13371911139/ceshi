@@ -520,21 +520,27 @@ router.use('/U/:id',(req,res,next)=>{
                 tokenData.time=nowTime;
                 wxApi.getTicket((resg)=>{
                     tokenData.ticket=resg.ticket;
+                    var dataList={
+                        path:ripath+('repairPlant'),
+                        title:'修理厂信息',
+                        tickets:tokenData.ticket
+                    }
+                    res.render('index',{dataList:dataList});
                 })
             }
         })
     }else{
-
+        var dataList={
+            path:ripath+('repairPlant'),
+            title:'修理厂信息',
+            tickets:tokenData.ticket
+        }
+        res.render('index',{dataList:dataList});
     }
 
 
 
 
-    var dataList={
-        path:ripath+('repairPlant'),
-        title:'修理厂信息',
-        tickets:tokenData.ticket
-    }
-    res.render('index',{dataList:dataList});
+
 })
 module.exports = router;
