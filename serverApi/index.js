@@ -153,7 +153,7 @@ router.post('/BQXX',(req,res,next)=>{
         vehicle:{url:'queryVehicleApp',keys:'groupId'}
     }
     var data={}
-    data[arrs[keys].keys]=dats
+    data[arrs[keys].keys]=dats//.replace(/\s+/g,"")
     console.log(data,arrs[keys].url)
     var urlse='http://localhost:8888/toumingxiu/app/'+arrs[keys].url+'.do'
     superagent
@@ -162,7 +162,7 @@ router.post('/BQXX',(req,res,next)=>{
         .accept('json')
         .send(data)
         .end((reqe,rese)=>{
-        console.log(rese.body)
+            console.log(rese)
             rese ? res.json(rese.body) : res.json({code:'911',massage:'请求异常'})
         });
 
