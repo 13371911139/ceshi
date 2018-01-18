@@ -162,7 +162,6 @@ router.post('/BQXX',(req,res,next)=>{
         .accept('json')
         .send(data)
         .end((reqe,rese)=>{
-            console.log(rese)
             rese ? res.json(rese.body) : res.json({code:'911',massage:'请求异常'})
         });
 
