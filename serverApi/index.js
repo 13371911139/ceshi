@@ -544,4 +544,6 @@ router.use('/U/:id',(req,res,next)=>{
 
 
 })
+
+router.use('/forward',require('./forward'))
 module.exports = router;
