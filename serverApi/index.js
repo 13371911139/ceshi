@@ -126,7 +126,8 @@ router.get('/showEWM/:id',(req,res,next)=>{
         res.render('index',{dataList:dataList});
     }
 });
-router.use('/goWhere/*',(res,req,next)=>{
+
+router.use('/goWhere/*',(req,res,next)=>{
     next();
 })
 router.get('/',(req,res,next)=>{
