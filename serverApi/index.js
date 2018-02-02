@@ -126,6 +126,9 @@ router.get('/showEWM/:id',(req,res,next)=>{
         res.render('index',{dataList:dataList});
     }
 });
+router.use('/goWhere/*',(res,req,next)=>{
+    next();
+})
 router.get('/',(req,res,next)=>{
     res.cookie('jb','ii')
     var newArr={fomeXLC:{type:'lexiuApp'}};
@@ -545,5 +548,5 @@ router.use('/U/:id',(req,res,next)=>{
 
 })
 
-router.use('/forward',require('./forward'))
+router.use('/forward',require('./forward'));
 module.exports = router;
