@@ -127,7 +127,7 @@ router.get('/showEWM/:id',(req,res,next)=>{
     }
 });
 
-router.use('/goWhere/*',(req,res,next)=>{
+router.use('/goWhere/:id',(req,res,next)=>{
     next();
 })
 router.get('/',(req,res,next)=>{
