@@ -7,14 +7,20 @@
     "build": "webpack --config webpack/webpack.config.js"
   },
   "author": "mhw",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "fontmin": "^0.9.6",
+    "jquery": "^3.2.1",
+    "mysql": "^2.15.0",
+    "node-schedule": "^1.3.0",
+    "superagent": "^3.5.2",
+    "superagent-jsonp": "^0.1.1",
     "swig": "^1.4.2",
-    "superagent": "^3.5.2"
+    "ws": "^4.0.0"
   },
   "license": "ISC",
   "main": "webpack.config.js",
