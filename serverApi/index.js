@@ -409,6 +409,7 @@ router.post('/callMe',(req,res,next)=>{
 //**字体**//
 var Fontmin = require('fontmin');
 router.post('/fonts',(req,res,next)=>{
+    return;
     var textData=req.query.data || req.body.data;
     var fontStyle=req.query.fontStyle || req.body.fontStyle
     var nowTime=Date.now();
@@ -444,6 +445,7 @@ var rule3     = new schedule.RecurrenceRule();
 var times3    = [1,5,9,13,17,21];
 rule3.hour  = times3;
 var j = schedule.scheduleJob(rule3, ()=>{
+    return;
     var nowTime=Date.now();
     var newpath='/usr/webServer/ceshi/common/fonts'
     var files = fs.readdirSync(newpath);
