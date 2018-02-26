@@ -34,7 +34,7 @@ app.use('/server', require('./serverApi'));
 
 try{
     app.listen(8090,()=>{
-        console.log('local:localhost:８０99');
+        console.log('local:localhost:８０90');
     });
 }catch (e){
     console.log('err')
