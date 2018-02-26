@@ -33,6 +33,6 @@ app.use('/lexiugo-app', require('./api'));//toumingxiu/
 app.use('/server', require('./serverApi'));
 
 
-app.listen(8099,()=>{
+app.listen(8090,()=>{
     console.log('local:localhost:８０99');
 });
