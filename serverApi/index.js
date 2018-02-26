@@ -412,8 +412,8 @@ router.post('/fonts',(req,res,next)=>{
     var textData=req.query.data || req.body.data;
     var fontStyle=req.query.fontStyle || req.body.fontStyle
     var nowTime=Date.now();
-    var srcPath = 'webServer/ceshi/common/fonts/'+fontStyle+'.ttf'; // 字体源文件
-    var destPath = 'webServer/ceshi/common/fonts/'+nowTime;    // 输出路径
+    var srcPath = '/usr/webServer/ceshi/common/fonts/'+fontStyle+'.ttf'; // 字体源文件
+    var destPath = '/usr/webServer/ceshi/common/fonts/'+nowTime;    // 输出路径
     var fontmin=new Fontmin()
         .src(srcPath)               // 输入配置
         .use(Fontmin.glyph({        // 字型提取插件
@@ -445,7 +445,7 @@ var times3    = [1,5,9,13,17,21];
 rule3.hour  = times3;
 var j = schedule.scheduleJob(rule3, ()=>{
     var nowTime=Date.now();
-    var newpath='webServer/ceshi/common/fonts'
+    var newpath='/usr/webServer/ceshi/common/fonts'
     var files = fs.readdirSync(newpath);
     files.forEach((file,index)=>{
         console.log(nowTime-file)
