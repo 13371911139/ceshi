@@ -171,7 +171,7 @@ router.post('/BQXX',(req,res,next)=>{
     var data={}
     data[arrs[keys].keys]=dats.replace(/\s+/g,"") || 'a'
     console.log(data,arrs[keys].url)
-    var urlse='http://localhost:8888/toumingxiu/app/'+arrs[keys].url+'.do'
+    var urlse='http://beidouchaxun.cn/toumingxiu/app/'+arrs[keys].url+'.do'
     superagent
         .post(urlse)
         .type('form')
