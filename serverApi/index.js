@@ -482,6 +482,7 @@ router.get('/toweixin',(req,res,next)=>{
     res.end();
 })
 router.post('/pcMapXlc',(req,res,next)=>{
+    console.log(req.body)
     res.json({htmls:"" +
         "<div id='mapSelectBox' style='position:fixed;top:0px;left:0px;z-index:9999;width:100%;height:100vh;'>" +
         "<section id='appWrappers'></section>" +
