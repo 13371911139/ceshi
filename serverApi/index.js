@@ -481,44 +481,7 @@ router.get('/toweixin',(req,res,next)=>{
         '')
     res.end();
 })
-/*var script = document.createElement("script");
-script.src = "**URL**";(此处略去详细URL内容）
-document.getElementById("mapSelectBox").appendChild(script);*/
 router.post('/pcMapXlc',(req,res,next)=>{
-    var jsons={htmls:
-    'console.log(document.getElementById("appWrappers"));' +
-    'var newReactDivDom=window.parent.document.createElement("div");' +
-   'newReactDivDom.id="mapSelectBox";' +
-    'newReactDivDom.style="position:fixed;top:0px;left:0px;z-index:9999;width:100%;height:100vh;";' +
-
-   'var appWrappersNOdeDom=window.parent.document.createElement("section");' +
-   'appWrappersNOdeDom.id="appWrappers";' +
-
-   'var xlcRepairLevelNode =window.parent.document.createElement("input");' +
-   'xlcRepairLevelNode.id="xlcRepairLevelNode";' +
-    'xlcRepairLevelNode.value="'+req.body.xlcRepairLevel+'";' +
-   'xlcRepairLevelNode.type="hidden";' +
-
-    'var brandCodeNode =window.parent.document.createElement("input");' +
-   'brandCodeNode.id="brandCodeNode";' +
-    'brandCodeNode.value="'+req.body.brandCode+'";' +
-   'brandCodeNode.type="hidden";' +
-
-   'var scripts =window.parent.document.createElement("script");' +
-   'scripts.src="http://116.62.162.134:8090/server/dist/pcSelectMap.js";' +
-
-   'console.log(appWrappersNOdeDom,xlcRepairLevelNode,brandCodeNode);' +
-   ' newReactDivDom.appendChild(appWrappersNOdeDom);' +
-   ' newReactDivDom.appendChild(xlcRepairLevelNode);' +
-   ' newReactDivDom.appendChild(brandCodeNode);' +
-   ' window.parent.document.body.appendChild(newReactDivDom);' +
-
-    'var scriptBox =window.parent.document.createElement("script");'+
-
-
-   ' window.parent.document.body.appendChild(scripts);'
-    //'$.getScript("http://116.62.162.134:8090/server/dist/pcSelectMap.js")' +
-    }
     res.json({htmls:"" +
         "<div id='mapSelectBox' style='position:fixed;top:0px;left:0px;z-index:9999;width:100%;height:100vh;'>" +
         "<section id='appWrappers'></section>" +
