@@ -340,7 +340,7 @@ router.post('/selectWXImg',(req,res,next)=>{
 router.get('/down',(req,res,next)=>{
     var ua = req.headers['user-agent'],vUrl
     if (/Android/.test(ua)){
-        vUrl='https://www.pgyer.com/QA1D'
+        vUrl='https://www.pgyer.com/PKVF'
     }else{
         vUrl='https://itunes.apple.com/us/app/%E9%80%8F%E6%98%8E%E4%BF%AE%E8%BD%A6/id1271183608?l=zh&ls=1&mt=8'
     }
